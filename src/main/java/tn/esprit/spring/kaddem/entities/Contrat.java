@@ -4,6 +4,7 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.*;
 
@@ -13,6 +14,20 @@ public class Contrat implements Serializable{
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer idContrat;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Contrat contrat = (Contrat) o;
+        return Objects.equals(idContrat, contrat.idContrat) && Objects.equals(dateDebutContrat, contrat.dateDebutContrat) && Objects.equals(dateFinContrat, contrat.dateFinContrat) && specialite == contrat.specialite && Objects.equals(archive, contrat.archive) && Objects.equals(montantContrat, contrat.montantContrat) && Objects.equals(etudiant, contrat.etudiant);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idContrat, dateDebutContrat, dateFinContrat, specialite, archive, montantContrat, etudiant);
+    }
+
     @Temporal(TemporalType.DATE)
     private Date dateDebutContrat;
     @Temporal(TemporalType.DATE)
