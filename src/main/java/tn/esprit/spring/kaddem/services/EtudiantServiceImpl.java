@@ -101,7 +101,16 @@ public class EtudiantServiceImpl implements IEtudiantService {
 	@Autowired
 	DepartementRepository departementRepository;
 
+//	public EtudiantServiceImpl(EtudiantRepository etudiantRepository, ContratRepository contratRepository, EquipeRepository equipeRepository, DepartementRepository departementRepository) {
+//	}
+//
+
+
 	public EtudiantServiceImpl(EtudiantRepository etudiantRepository, ContratRepository contratRepository, EquipeRepository equipeRepository, DepartementRepository departementRepository) {
+		this.etudiantRepository = etudiantRepository;
+		this.contratRepository = contratRepository;
+		this.equipeRepository = equipeRepository;
+		this.departementRepository = departementRepository;
 	}
 
 	// Log messages using the logger
@@ -150,7 +159,7 @@ public class EtudiantServiceImpl implements IEtudiantService {
 	}
 
 	public List<Etudiant> getEtudiantsByDepartement(Integer idDepartement) {
-		log.debug("Retrieving etudiants by departement (ID: " + idDepartement + ")");
+		log.info("Retrieving etudiants by departement (ID: " + idDepartement + ")");
 		return etudiantRepository.findEtudiantsByDepartement_IdDepart(idDepartement);
 	}
 }

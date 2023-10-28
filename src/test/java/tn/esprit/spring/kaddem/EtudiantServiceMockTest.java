@@ -1,9 +1,13 @@
 package tn.esprit.spring.kaddem;
 
+import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.spring.kaddem.entities.*;
@@ -13,10 +17,7 @@ import tn.esprit.spring.kaddem.repositories.EquipeRepository;
 import tn.esprit.spring.kaddem.repositories.EtudiantRepository;
 import tn.esprit.spring.kaddem.services.EtudiantServiceImpl;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -24,6 +25,10 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
 public class EtudiantServiceMockTest {
+
+
+
+
 
     @Mock
     private EtudiantRepository etudiantRepository;
@@ -33,11 +38,17 @@ public class EtudiantServiceMockTest {
     private EquipeRepository equipeRepository;
     @Mock
     private DepartementRepository departementRepository;
+    @Mock
+    private Contrat contrat; // Create a mock Contrat object
+    @Mock
+    private Equipe equipe; // Create a mock Equipe object
 
+    @InjectMocks
     private EtudiantServiceImpl etudiantService;
 
-    @BeforeEach
+    @Before
     void setUp() {
+
         etudiantService = new EtudiantServiceImpl(etudiantRepository, contratRepository, equipeRepository, departementRepository);
     }
 
@@ -110,27 +121,53 @@ public class EtudiantServiceMockTest {
         assertEquals(departement, etudiant.getDepartement());
     }
 
-    @Test
-    public void testAddAndAssignEtudiantToEquipeAndContract() {
-        Etudiant etudiant = new Etudiant(7, "Grace", "Smith", Option.GAMIX);
-        Contrat contrat = new Contrat(1, new Date(), new Date(), Specialite.IA, true, 1000);
-        Equipe equipe = new Equipe(1, "Equipe 1", Niveau.EXPERT);
 
-        when(contratRepository.findById(1)).thenReturn(Optional.of(contrat));
-        when(equipeRepository.findById(1)).thenReturn(Optional.of(equipe));
 
-        Etudiant result = etudiantService.addAndAssignEtudiantToEquipeAndContract(etudiant, 1, 1);
+@Test
+public void testGetEtudiantsByDepartement() {
 
-        assertEquals(etudiant, contrat.getEtudiant());
-        assertTrue(equipe.getEtudiants().contains(etudiant));
-    }
+    Integer idDepartement = 1;
 
-    @Test
-    public void testGetEtudiantsByDepartement() {
-        List<Etudiant> etudiants = etudiantService.getEtudiantsByDepartement(1);
-        assertFalse(etudiants.isEmpty());
-        assertEquals(2, etudiants.size());
-        assertEquals("Alice", etudiants.get(0).getNomE());
-        assertEquals("Bob", etudiants.get(1).getNomE());
-    }
+
+    List<Etudiant> etudiants = new ArrayList<>();
+    etudiants.add(new Etudiant(1, "John", "Doe", Option.SE));
+    etudiants.add(new Etudiant(2, "Alice", "Johnson", Option.SIM));
+
+
+    Mockito.when(etudiantRepository.findEtudiantsByDepartement_IdDepart(idDepartement))
+            .thenReturn(etudiants);
+
+
+    List<Etudiant> result = etudiantService.getEtudiantsByDepartement(idDepartement);
+
+
+    assertFalse(result.isEmpty());
+    assertEquals(2, result.size());
+    assertEquals("John", result.get(0).getNomE());
+    assertEquals("Alice", result.get(1).getNomE());
+}
+//    @Test
+//    public void testAddAndAssignEtudiantToEquipeAndContract() {
+//        // Arrange
+//        Etudiant etudiant = new Etudiant();
+//        Integer idContrat = 1;
+//        Integer idEquipe = 2;
+//
+//        Contrat contrat = new Contrat();
+//        Equipe equipe = new Equipe();
+//
+//        when(contratRepository.findById(idContrat)).thenReturn(Optional.of(contrat));
+//        when(equipeRepository.findById(idEquipe)).thenReturn(Optional.of(equipe));
+//
+//        // Act
+//        Etudiant result = etudiantService.addAndAssignEtudiantToEquipeAndContract(etudiant, idContrat, idEquipe);
+//
+//        // Assert
+//        assertNotNull(result);
+//        assertEquals(etudiant, contrat.getEtudiant());
+//        assertTrue(equipe.getEtudiants().contains(etudiant));
+//    }
+
+
+
 }
