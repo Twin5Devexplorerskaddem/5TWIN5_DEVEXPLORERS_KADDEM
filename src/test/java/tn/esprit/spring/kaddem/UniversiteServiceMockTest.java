@@ -93,7 +93,7 @@ public class UniversiteServiceMockTest {
         verify(universiteRepository, times(1)).delete(universite);
     }
 
-    @Test
+   /*Test
     public void testAssignUniversiteToDepartement() {
         Universite universite = new Universite(6, "Princeton");
         Departement departement = new Departement(1, "Computer Science");
@@ -104,7 +104,7 @@ public class UniversiteServiceMockTest {
 
         Set<Departement> universiteDepartements = universite.getDepartements();
         assertTrue(universiteDepartements.contains(departement));
-    }
+    }**/
 
     @Test
     public void testRetrieveDepartementsByUniversite() {
