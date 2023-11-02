@@ -16,8 +16,10 @@ public class UniversiteServiceImpl implements IUniversiteService{
     UniversiteRepository universiteRepository;
 @Autowired
     DepartementRepository departementRepository;
-    public UniversiteServiceImpl() {
-        // TODO Auto-generated constructor stub
+    @Autowired
+    public UniversiteServiceImpl(UniversiteRepository universiteRepository, DepartementRepository departementRepository) {
+        this.universiteRepository = universiteRepository;
+        this.departementRepository = departementRepository;
     }
   public   List<Universite> retrieveAllUniversites(){
 return (List<Universite>) universiteRepository.findAll();
