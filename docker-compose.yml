@@ -3,7 +3,7 @@ version: "3.3"
 services:
   5TWIN5-G5-KADDEM:
     container_name: 5TWIN5-G5-KADDEM
-    build: ./5TWIN5_DEVEXPLORERS_KADDEM
+    build: .
     ports:
       - "8090:8089"
     environment:
