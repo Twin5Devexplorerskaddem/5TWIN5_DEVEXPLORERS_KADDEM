@@ -50,7 +50,7 @@ public class UniversiteRestController {
 
 	//@PutMapping("/affecter-etudiant-departement")
 	@PutMapping(value="/affecter-universite-departement/{universiteId}/{departementId}")
-	public void affectertUniversiteToDepartement(@PathVariable("universiteId") Integer universiteId, @PathVariable("departementId")Integer departementId){
+	public void affectertUniversiteToDepartement(@PathVariable("universiteId") Integer universiteId, @PathVariable("departementId")Long departementId){
 		universiteService.assignUniversiteToDepartement(universiteId, departementId);
 	}
 

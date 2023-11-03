@@ -5,8 +5,8 @@ import org.springframework.stereotype.Repository;
 import tn.esprit.spring.kaddem.entities.Departement;
 
 @Repository
-public interface DepartementRepository extends CrudRepository<Departement,Integer> {
+public interface DepartementRepository extends CrudRepository<Departement,Long> {
 
-
+    Departement findByNomDepart(String nomDepart);
 
 }

@@ -20,7 +20,7 @@ public class DepartementRestController {
 	}
 	// http://localhost:8089/Kaddem/departement/retrieve-departement/8
 	@GetMapping("/retrieve-departement/{departement-id}")
-	public Departement retrieveDepartement(@PathVariable("departement-id") Integer departementId) {
+	public Departement retrieveDepartement(@PathVariable("departement-id") Long departementId) {
 		return departementService.retrieveDepartement(departementId);
 	}
 
@@ -33,7 +33,7 @@ public class DepartementRestController {
 
 	// http://localhost:8089/Kaddem/departement/remove-departement/1
 	@DeleteMapping("/remove-departement/{departement-id}")
-	public void removeDepartement(@PathVariable("departement-id") Integer departementId) {
+	public void removeDepartement(@PathVariable("departement-id") Long departementId) {
 		departementService.deleteDepartement(departementId);
 	}
 

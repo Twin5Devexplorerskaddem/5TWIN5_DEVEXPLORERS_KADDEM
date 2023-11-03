@@ -17,7 +17,7 @@ public interface IUniversiteService {
 
     public  void deleteUniversite(Integer idUniversite);
 
-    public void assignUniversiteToDepartement(Integer idUniversite, Integer idDepartement);
+    public void assignUniversiteToDepartement(Integer idUniversite, Long idDepartement);
 
     public Set<Departement> retrieveDepartementsByUniversite(Integer idUniversite);
 

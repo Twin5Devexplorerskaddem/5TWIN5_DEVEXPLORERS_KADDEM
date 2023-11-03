@@ -39,7 +39,7 @@ return  u;
         universiteRepository.delete(retrieveUniversite(idUniversite));
     }
 
-    public void assignUniversiteToDepartement(Integer idUniversite, Integer idDepartement){
+    public void assignUniversiteToDepartement(Integer idUniversite, Long idDepartement){
         Universite u= universiteRepository.findById(idUniversite).orElse(null);
         Departement d= departementRepository.findById(idDepartement).orElse(null);
         u.getDepartements().add(d);

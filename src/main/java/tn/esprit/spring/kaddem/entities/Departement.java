@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Departement implements Serializable{
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer idDepart;
+    private Long idDepart;
     private String nomDepart;
     @OneToMany(mappedBy="departement")
     @JsonIgnore
@@ -25,7 +25,7 @@ public class Departement implements Serializable{
         this.nomDepart = nomDepart;
     }
 
-    public Departement(Integer idDepart, String nomDepart) {
+    public Departement(Long idDepart, String nomDepart) {
         super();
         this.idDepart = idDepart;
         this.nomDepart = nomDepart;
@@ -39,10 +39,10 @@ public class Departement implements Serializable{
         this.etudiants = etudiants;
     }
 
-    public Integer getIdDepart() {
+    public Long getIdDepart() {
         return idDepart;
     }
-    public void setIdDepart(Integer idDepart) {
+    public void setIdDepart(Long idDepart) {
         this.idDepart = idDepart;
     }
     public String getNomDepart() {
