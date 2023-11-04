@@ -48,18 +48,6 @@ public class UniversiteRestController {
 		return u1;
 	}
 
-	//@PutMapping("/affecter-etudiant-departement")
-	@PutMapping(value="/affecter-universite-departement/{universiteId}/{departementId}")
-	public void affectertUniversiteToDepartement(@PathVariable("universiteId") Integer universiteId, @PathVariable("departementId")Integer departementId){
-		universiteService.assignUniversiteToDepartement(universiteId, departementId);
-	}
-
-	@GetMapping(value = "/listerDepartementsUniversite/{idUniversite}")
-	public Set<Departement> listerDepartementsUniversite(@PathVariable("idUniversite") Integer idUniversite) {
-
-		return universiteService.retrieveDepartementsByUniversite(idUniversite);
-	}
-
 }
 
 

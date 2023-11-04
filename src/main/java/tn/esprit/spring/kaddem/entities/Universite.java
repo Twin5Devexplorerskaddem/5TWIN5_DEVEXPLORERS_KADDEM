@@ -13,9 +13,7 @@ public class Universite implements Serializable{
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer idUniv;
     private String nomUniv;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JsonIgnore
-    private Set<Departement> departements;
+
     public Universite() {
         // TODO Auto-generated constructor stub
     }
@@ -29,14 +27,6 @@ public class Universite implements Serializable{
         super();
         this.idUniv = idUniv;
         this.nomUniv = nomUniv;
-    }
-
-    public Set<Departement> getDepartements() {
-        return departements;
-    }
-
-    public void setDepartements(Set<Departement> departements) {
-        this.departements = departements;
     }
 
     public Integer getIdUniv() {
