@@ -12,7 +12,7 @@ services:
     volumes:
       - db_vol:/var/lib/mysqldb
 
-  instructor_app:
+  Universite_app:
     build: .
     image: zeinebhamdi-5twin5-g6
     restart: unless-stopped
