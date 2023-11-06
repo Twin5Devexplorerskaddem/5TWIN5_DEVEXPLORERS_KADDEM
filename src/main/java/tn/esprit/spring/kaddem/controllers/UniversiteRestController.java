@@ -30,7 +30,6 @@ public class UniversiteRestController {
 	public Universite retrieveUniversite(@PathVariable("universite-id") Integer universiteId) {
 		return universiteService.retrieveUniversite(universiteId);
 	}
-
 	// http://localhost:8089/Kaddem/universite/add-universite
 	@CrossOrigin(origins = "*")
 	@PostMapping("/add-universite")
