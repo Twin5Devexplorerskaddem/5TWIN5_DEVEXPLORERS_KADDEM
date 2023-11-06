@@ -15,6 +15,10 @@
     <description>kaddem</description>
     <properties>
         <java.version>1.8</java.version>
+
+        <sonar.host.url>http://192.168.33.10:9000</sonar.host.url>
+        <sonar.login>ad175edf162aad7d27d93d833e631186c3c3167d</sonar.login>
+
     </properties>
     <dependencies>
         <dependency>
@@ -70,6 +74,15 @@
 
     </dependencies>
 
+    <distributionManagement>
+        <repository>
+
+            <id>KaddemRepo</id>
+             <name> Kaddem Repo </name>
+            <url>http://192.168.33.10:8081/repository/maven-releases/</url>
+        </repository>
+
+    </distributionManagement>
     <build>
         <plugins>
             <plugin>
@@ -84,6 +97,23 @@
                         </exclude>
                     </excludes>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <configuration>
+                            <classifier>exec</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
