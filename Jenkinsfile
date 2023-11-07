@@ -41,7 +41,7 @@ pipeline {
         }
          stage('Build Docker image'){
                     steps {
-                            sh 'docker build -t farahhasnaoui-5twin5-g5-kaddem:latest -f DockerFile .'
+                            sh 'sudo docker build -t farahhasnaoui-5twin5-g5-kaddem:latest -f DockerFile .'
                     }
                 }
 
@@ -52,11 +52,30 @@ pipeline {
 
             }
         }
+        stage('Login to DockerHub') {
+                            steps {
+                                script {
+                                withCredentials([usernamePassword(credentialsId: 'dockerHub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                                    // Log in to Docker Hub
+                                    sh "echo $DOCKERHUB_PASSWORD | sudo docker login -u $DOCKERHUB_USERNAME --password-stdin"
+                                }
+                            }
+                        }
+                    }
+
+         stage('Deploy Image to DockerHub') {
+                             steps {
+                                // Taguer l'image locale avec le nouveau tag pour Docker Hub
+                                sh "sudo docker tag farahhasnaoui-5twin5-g5-kaddem:latest farahhasnaoui/devopsimage:latest"
+                                // Pousser l'image vers le Docker Hub
+                                sh "sudo docker push farahhasnaoui/devopsimage:latest"
+                                }
+                           }
 
          stage('Docker Compose Up') {
                    steps {
                         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                            sh 'docker-compose up -d'
+                            sh 'sudo docker-compose up -d'
                         }
                 }
             }
