@@ -39,15 +39,15 @@ pipeline {
                 }
             }
         }
-       
+
            stage('Deploy Artifact to Nexus') {
             steps {
-                
+
                     sh 'mvn deploy -DskipTests=true'
-                
+
             }
         }
-         
-         
+
+
     }
 }
