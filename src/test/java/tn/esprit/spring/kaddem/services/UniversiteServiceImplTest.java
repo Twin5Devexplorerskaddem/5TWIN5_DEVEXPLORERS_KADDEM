@@ -36,6 +36,9 @@ public class UniversiteServiceImplTest {
         Universite sampleUniversite = new Universite();
         sampleUniversite.setIdUniv(1);
         sampleUniversite.setNomUniv("Sample University");
+        sampleUniversite.setLocalisation("Sample Location");
+        sampleUniversite.setDescription("Sample Description");
+        sampleUniversite.setEmail("sample@example.com");
 
         Mockito.when(universiteRepository.save(Mockito.any(Universite.class))).thenReturn(sampleUniversite);
 
@@ -45,19 +48,26 @@ public class UniversiteServiceImplTest {
 
         assertEquals(1, addedUniversite.getIdUniv());
         assertEquals("Sample University", addedUniversite.getNomUniv());
+        assertEquals("Sample Location", addedUniversite.getLocalisation());
+        assertEquals("Sample Description", addedUniversite.getDescription());
+        assertEquals("sample@example.com", addedUniversite.getEmail());
     }
-
-
 
     @Test
     public void testRetrieveAllUniversites() {
         Universite universite1 = new Universite();
         universite1.setIdUniv(1);
         universite1.setNomUniv("University 1");
+        universite1.setLocalisation("Location 1");
+        universite1.setDescription("Description 1");
+        universite1.setEmail("email1@example.com");
 
         Universite universite2 = new Universite();
         universite2.setIdUniv(2);
         universite2.setNomUniv("University 2");
+        universite2.setLocalisation("Location 2");
+        universite2.setDescription("Description 2");
+        universite2.setEmail("email2@example.com");
 
         List<Universite> universiteList = new ArrayList<>();
         universiteList.add(universite1);
@@ -72,8 +82,14 @@ public class UniversiteServiceImplTest {
         assertEquals(2, retrievedUniversites.size());
         assertEquals(1, retrievedUniversites.get(0).getIdUniv());
         assertEquals("University 1", retrievedUniversites.get(0).getNomUniv());
+        assertEquals("Location 1", retrievedUniversites.get(0).getLocalisation());
+        assertEquals("Description 1", retrievedUniversites.get(0).getDescription());
+        assertEquals("email1@example.com", retrievedUniversites.get(0).getEmail());
         assertEquals(2, retrievedUniversites.get(1).getIdUniv());
         assertEquals("University 2", retrievedUniversites.get(1).getNomUniv());
+        assertEquals("Location 2", retrievedUniversites.get(1).getLocalisation());
+        assertEquals("Description 2", retrievedUniversites.get(1).getDescription());
+        assertEquals("email2@example.com", retrievedUniversites.get(1).getEmail());
     }
 
     @Test
@@ -81,6 +97,9 @@ public class UniversiteServiceImplTest {
         Universite sampleUniversite = new Universite();
         sampleUniversite.setIdUniv(1);
         sampleUniversite.setNomUniv("Sample University");
+        sampleUniversite.setLocalisation("Sample Location");
+        sampleUniversite.setDescription("Sample Description");
+        sampleUniversite.setEmail("sample@example.com");
 
         Mockito.when(universiteRepository.save(Mockito.any(Universite.class))).thenReturn(sampleUniversite);
 
@@ -90,12 +109,18 @@ public class UniversiteServiceImplTest {
 
         assertEquals(1, updatedUniversite.getIdUniv());
         assertEquals("Sample University", updatedUniversite.getNomUniv());
+        assertEquals("Sample Location", updatedUniversite.getLocalisation());
+        assertEquals("Sample Description", updatedUniversite.getDescription());
+        assertEquals("sample@example.com", updatedUniversite.getEmail());
     }
 
     @Test
     public void testRetrieveUniversite() {
         Universite sampleUniversite = new Universite();
         sampleUniversite.setIdUniv(1);
+        sampleUniversite.setLocalisation("Sample Location");
+        sampleUniversite.setDescription("Sample Description");
+        sampleUniversite.setEmail("sample@example.com");
 
         Mockito.when(universiteRepository.findById(1)).thenReturn(Optional.of(sampleUniversite));
 
@@ -104,5 +129,8 @@ public class UniversiteServiceImplTest {
         Mockito.verify(universiteRepository).findById(1);
 
         assertEquals(1, retrievedUniversite.getIdUniv());
+        assertEquals("Sample Location", retrievedUniversite.getLocalisation());
+        assertEquals("Sample Description", retrievedUniversite.getDescription());
+        assertEquals("sample@example.com", retrievedUniversite.getEmail());
     }
 }
