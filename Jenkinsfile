@@ -2,12 +2,17 @@ pipeline {
     agent any
 
     stages {
-       stage('Checkout') {
-           steps {
+        stage('Checkout') {
+            steps {
                 script {
-                     checkout([$class: 'GitSCM', branches: [[name: 'OmarCharfi-5twin5-G5-KADDEM']], userRemoteConfigs: [[url: 'https://github.com/Twin5Devexplorerskaddem/5TWIN5_DEVEXPLORERS_KADDEM.git']]])
-                  }
-    }
+                    checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: 'OmarCharfi-5twin5-G5-KADDEM']],
+                        userRemoteConfigs: [[url: 'https://github.com/Twin5Devexplorerskaddem/5TWIN5_DEVEXPLORERS_KADDEM.git']]
+                    ])
+                }
+            }
+        }
 
         stage('Build') {
             steps {
@@ -39,5 +44,4 @@ pipeline {
             }
         }
     }
-
 }
