@@ -39,6 +39,11 @@ pipeline {
                 }
             }
         }
+         stage('Build Docker image'){
+                    steps {
+                            sh 'sudo docker build -t FarahHasnaoui-5twin5-G5-kaddem:latest -f DockerFile .'
+                    }
+                }
 
            stage('Deploy Artifact to Nexus') {
             steps {
@@ -47,6 +52,14 @@ pipeline {
 
             }
         }
+
+         stage('Docker Compose Up') {
+                   steps {
+                        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                            sh 'sudo docker-compose up -d'
+                        }
+                }
+            }
 
 
     }
