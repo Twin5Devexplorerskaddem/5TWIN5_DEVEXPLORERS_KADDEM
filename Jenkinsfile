@@ -41,7 +41,7 @@ pipeline {
         }
          stage('Build Docker image'){
                     steps {
-                            sh 'sudo docker build -t FarahHasnaoui-5twin5-G5-kaddem:latest -f DockerFile .'
+                            sh 'docker build -t farahhasnaoui-5twin5-g5-kaddem:latest -f DockerFile .'
                     }
                 }
 
@@ -56,7 +56,7 @@ pipeline {
          stage('Docker Compose Up') {
                    steps {
                         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                            sh 'sudo docker-compose up -d'
+                            sh 'docker-compose up -d'
                         }
                 }
             }
