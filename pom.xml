@@ -74,6 +74,7 @@
             <id>deploymentRepo</id>
             <name>Nexus Repository</name>
             <url>http://172.10.0.140:8081/repository/maven-releases/</url>
+
         </repository>
     </distributionManagement>
 
@@ -84,6 +85,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
@@ -111,6 +113,7 @@
                         </goals>
                     </execution>
                 </executions>
+
             </plugin>
 
             <plugin>
@@ -118,6 +121,7 @@
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>3.6.0.1398</version> <!-- Update to a compatible version -->
             </plugin>
+
 
 
 
