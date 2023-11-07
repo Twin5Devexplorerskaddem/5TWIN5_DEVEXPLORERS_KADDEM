@@ -28,12 +28,9 @@ pipeline {
             }
         }
 
-        stage('Code Analysis') {
+        stage('sonarQube') {
             steps {
-                // Exécuter l'analyse de code avec SonarQube
-                withSonarQube(env: 'Votre-SonarQube-Env') {
-                    sh 'mvn sonar:sonar'
-                }
+                sh 'mvn sonar:sonar'
             }
         }
 
