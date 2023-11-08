@@ -1,10 +1,6 @@
 package tn.esprit.spring.kaddem.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.io.Serializable;
-import java.util.Set;
-
 import javax.persistence.*;
 
 @Entity
@@ -18,7 +14,6 @@ public class Universite implements Serializable {
     private String email;        // Add email attribute
 
     public Universite() {
-        // TODO Auto-generated constructor stub
     }
 
     public Universite(String nomUniv, String localisation, String description, String email) {
