@@ -1,5 +1,5 @@
 FROM openjdk:8-jdk-alpine
 WORKDIR /app
-COPY target/*.jar /app/5twin-G5-Kaddem.jar
-EXPOSE 8083
+COPY target/kaddem-0.1.jar /app/5twin-G5-Kaddem.jar
+EXPOSE 8089
 CMD ["java","-jar","/app/5twin-G5-Kaddem.jar"]
