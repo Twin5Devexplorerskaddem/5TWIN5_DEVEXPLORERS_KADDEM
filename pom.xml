@@ -15,7 +15,12 @@
     <description>kaddem</description>
     <properties>
         <java.version>1.8</java.version>
+            <sonar.host.url>http://172.10.0.140:9000</sonar.host.url>
+            <sonar.login>admin</sonar.login>
+            <sonar.password>admin</sonar.password>
+            <sonar.projectKey>amiineoudig5kaddem</sonar.projectKey>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -35,7 +40,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.6</version>
+        </dependency>
 
         <dependency>
             <groupId>com.mysql</groupId>
@@ -53,6 +62,10 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>1.6.9</version>
@@ -64,6 +77,42 @@
         </dependency>
 
     </dependencies>
+<!--    <distributionManagement>-->
+<!--        <snapshotRepository>-->
+<!--            <id>MedamineoudiG5Kaddem</id>-->
+<!--            <url>http://172.10.0.140:8081/repository/maven-releases/</url>-->
+
+<!--        </snapshotRepository>-->
+<!--    </distributionManagement>-->
+
+
+<!--    <distributionManagement>-->
+<!--        <repository>-->
+<!--            <id>MedamineoudiG5Kaddem</id>-->
+<!--            <name>releases</name>-->
+<!--            <url>http://172.10.0.140:8081/repository/maven-releases/</url>-->
+<!--        </repository>-->
+<!--        <snapshotRepository>-->
+<!--            <id>MedamineoudiG5Kaddem</id>-->
+<!--            <name>snapshots</name>-->
+<!--            <url>http://172.10.0.140:8081/repository/maven-snapshots/</url>-->
+<!--        </snapshotRepository>-->
+<!--    </distributionManagement>-->
+    <distributionManagement>
+        <repository>
+            <id>MedamineoudiG5Kaddem</id>
+            <name>amineoudiG5Kaddem</name>
+            <url>http://172.10.0.140:8081/repository/amineoudiG5Kaddem/</url>
+
+        </repository>
+    </distributionManagement>
+
+
+
+
+
+
+
 
     <build>
         <plugins>
@@ -79,7 +128,70 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.7</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>post-unit-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.sonatype.plugins</groupId>-->
+<!--                <artifactId>nexus-staging-maven-plugin</artifactId>-->
+<!--                <version>1.5.1</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>default-deploy</id>-->
+<!--                        <phase>deploy</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>deploy</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--                <configuration>-->
+<!--                    <serverId>nexus</serverId>-->
+<!--                    <nexusUrl>http://localhost:8081/nexus/</nexusUrl>-->
+<!--                    <skipStaging>true</skipStaging>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
+
     </build>
+<!--    <distributionManagement>-->
+<!--        <snapshotRepository>-->
+<!--            <id>MedamineoudiG5Kaddem</id>-->
+<!--            <url>http://172.10.0.140:8081/nexus/content/repositories/snapshots</url>-->
+<!--        </snapshotRepository>-->
+<!--    </distributionManagement>-->
+<!--    <distributionManagement>-->
+<!--        <snapshotRepository>-->
+<!--            <id>MedamineoudiG5Kaddem</id>-->
+<!--            <url>http://172.10.0.140:8081/repository/maven-snapshots/</url>-->
+<!--        </snapshotRepository>-->
+<!--        <repository>-->
+<!--            <id>MedamineoudiG5Kaddem</id>-->
+<!--            <url>http://172.10.0.140:8081/repository/maven-releases/</url>-->
+<!--        </repository>-->
+
+<!--    </distributionManagement>-->
 
 </project>

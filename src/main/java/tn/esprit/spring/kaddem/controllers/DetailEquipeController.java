@@ -1,6 +1,7 @@
 package tn.esprit.spring.kaddem.controllers;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.kaddem.entities.DetailEquipe;
@@ -22,7 +23,8 @@ public class DetailEquipeController {
         return listEquipes;
     }
     // http://localhost:8089/Kaddem/Detailequipe/retrieve-equipe/8
-    @GetMapping("/retrieve-detailequipe/{equipe-id}")
+    @GetMapping(value = "/retrieve-detailequipe/{equipe-id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     public DetailEquipe retrieveEquipe(@PathVariable("equipe-id") Integer equipeId) {
         return equipeService.retrieveEquipe(equipeId);
     }
