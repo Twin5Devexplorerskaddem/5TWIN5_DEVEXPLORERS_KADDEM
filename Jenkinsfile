@@ -66,7 +66,7 @@ pipeline {
          stage('Deploy Image to DockerHub') {
                              steps {
                                 // Taguer l'image locale avec le nouveau tag pour Docker Hub
-                                sh "sudo docker tag farahhasnaoui-5twin5-g5-kaddem:latest farahhasnaoui/devopsimage:latest"
+                                sh "docker tag farahhasnaoui-5twin5-g5-kaddem:latest farahhasnaoui/devopsimage:latest"
                                 // Pousser l'image vers le Docker Hub
                                 sh "sudo docker push farahhasnaoui/devopsimage:latest"
                                 }
@@ -75,7 +75,7 @@ pipeline {
          stage('Docker Compose Up') {
                    steps {
                         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                            sh 'sudo docker-compose up -d'
+                            sh 'docker-compose up -d'
                         }
                 }
             }
