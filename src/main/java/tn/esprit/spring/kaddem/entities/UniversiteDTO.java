@@ -10,6 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UniversiteDTO {
+    private Integer idUniv;
     private String nomUniv;
     private String localisation;
     private String description;

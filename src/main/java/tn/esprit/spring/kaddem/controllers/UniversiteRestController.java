@@ -51,14 +51,18 @@ public class UniversiteRestController {
 	@CrossOrigin(origins = "*")
 	@PutMapping("/update-universite")
 	public Universite updateUniversite(@RequestBody UniversiteDTO universiteDTO) {
-		Universite universite = new Universite();
-		universite.setNomUniv(universiteDTO.getNomUniv());
-		universite.setLocalisation(universiteDTO.getLocalisation());
-		universite.setDescription(universiteDTO.getDescription());
-		universite.setEmail(universiteDTO.getEmail());
+		Universite existingUniversite = universiteService.retrieveUniversite(universiteDTO.getIdUniv());
+		if (existingUniversite == null) {
+			return null;
+		}
+		existingUniversite.setNomUniv(universiteDTO.getNomUniv());
+		existingUniversite.setLocalisation(universiteDTO.getLocalisation());
+		existingUniversite.setDescription(universiteDTO.getDescription());
+		existingUniversite.setEmail(universiteDTO.getEmail());
 
-		return universiteService.updateUniversite(universite);
+		return universiteService.updateUniversite(existingUniversite);
 	}
+
 
 
 }
