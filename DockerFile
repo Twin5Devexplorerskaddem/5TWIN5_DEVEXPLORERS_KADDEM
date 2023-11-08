@@ -1,0 +1,5 @@
+FROM openjdk:8-jre-alpine
+WORKDIR /app
+COPY target/kaddem-0.0.1.jar kaddem-0.0.1.jar
+EXPOSE 8080
+CMD ["java", "-jar","kaddem-0.0.1.jar"]
