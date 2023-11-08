@@ -3,6 +3,7 @@ package tn.esprit.spring.kaddem.controllers;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.kaddem.entities.Universite;
+import tn.esprit.spring.kaddem.entities.UniversiteDTO;
 import tn.esprit.spring.kaddem.services.IUniversiteService;
 
 import java.util.List;
@@ -29,9 +30,14 @@ public class UniversiteRestController {
 	// http://localhost:8089/Kaddem/universite/add-universite
 	@CrossOrigin(origins = "*")
 	@PostMapping("/add-universite")
-	public Universite addUniversite(@RequestBody Universite universite) {
-		return  universiteService.addUniversite(universite);
+	public Universite addUniversite(@RequestBody UniversiteDTO universiteDTO) {
+		Universite universite = new Universite();
+		universite.setNomUniv(universiteDTO.getNomUniv());
+		universite.setLocalisation(universiteDTO.getLocalisation());
+		universite.setDescription(universiteDTO.getDescription());
+		universite.setEmail(universiteDTO.getEmail());
 
+		return universiteService.addUniversite(universite);
 	}
 
 	// http://localhost:8089/Kaddem/universite/remove-universite/1
@@ -44,10 +50,16 @@ public class UniversiteRestController {
 	// http://localhost:8089/Kaddem/universite/update-universite
 	@CrossOrigin(origins = "*")
 	@PutMapping("/update-universite")
-	public Universite updateUniversite(@RequestBody Universite universite) {
-		return  universiteService.updateUniversite(universite);
+	public Universite updateUniversite(@RequestBody UniversiteDTO universiteDTO) {
+		Universite universite = new Universite();
+		universite.setNomUniv(universiteDTO.getNomUniv());
+		universite.setLocalisation(universiteDTO.getLocalisation());
+		universite.setDescription(universiteDTO.getDescription());
+		universite.setEmail(universiteDTO.getEmail());
 
+		return universiteService.updateUniversite(universite);
 	}
+
 
 }
 
