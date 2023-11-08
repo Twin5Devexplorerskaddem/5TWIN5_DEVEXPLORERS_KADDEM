@@ -29,17 +29,6 @@ services:
       MANAGEMENT_ENDPOINT_PROMETHEUS_ENABLED: 'true'
       MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED: 'true'
 
-  # PHPMyAdmin service
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    ports:
-      - "8080:8080"
-    depends_on:
-      - mysql
-    environment:
-      PMA_HOST: mysql
-      PMA_USER: root
-      PMA_PASSWORD:
-
+  
 volumes:
   mysql-data:
