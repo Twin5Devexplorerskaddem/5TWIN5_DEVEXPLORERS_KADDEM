@@ -68,7 +68,7 @@ pipeline {
                                 // Taguer l'image locale avec le nouveau tag pour Docker Hub
                                 sh "docker tag farahhasnaoui-5twin5-g5-kaddem:latest farahhasnaoui/devopsimage:latest"
                                 // Pousser l'image vers le Docker Hub
-                                sh "sudo docker push farahhasnaoui/devopsimage:latest"
+                                sh "docker push farahhasnaoui/devopsimage:latest"
                                 }
                            }
 
