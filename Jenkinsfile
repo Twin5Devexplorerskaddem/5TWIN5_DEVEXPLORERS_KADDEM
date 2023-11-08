@@ -79,7 +79,12 @@ pipeline {
                         }
                 }
             }
+         stage('Email notification') {
+                  steps{
+                      mail bcc: '', body: 'the pipeline is sucess !', cc: '', from: '', replyTo: '', subject: 'Jenkins Email Notification', to: 'farah.hasnaoui22@gmail.com'
+                      }
 
+             }
 
     }
 }
