@@ -1,5 +1,7 @@
 FROM openjdk:8-jdk-alpine
 WORKDIR /app
+RUN echo "Files in the target directory:"
+RUN ls -l target
 COPY target/*.jar app/5twin-G5-Kaddem.jar
 EXPOSE 8089
 CMD ["java","-jar","app/5twin-G5-Kaddem.jar"]
