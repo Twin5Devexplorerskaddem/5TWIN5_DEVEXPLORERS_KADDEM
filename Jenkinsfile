@@ -40,10 +40,10 @@ pipeline {
             }
         }
          stage('Build Docker image'){
-                    steps {
-                            sh 'sudo docker build -t farahhasnaoui-5twin5-g5-kaddem:latest -f DockerFile .'
-                    }
-                }
+             steps {
+                 sh 'docker build -t farahhasnaoui-5twin5-g5-kaddem:latest -f DockerFile .'
+             }
+         }
 
            stage('Deploy Artifact to Nexus') {
             steps {
@@ -57,7 +57,7 @@ pipeline {
                                 script {
                                 withCredentials([usernamePassword(credentialsId: 'dockerHub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
                                     // Log in to Docker Hub
-                                    sh "echo $DOCKERHUB_PASSWORD | sudo docker login -u $DOCKERHUB_USERNAME --password-stdin"
+                                    sh "echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin"
                                 }
                             }
                         }
