@@ -4,8 +4,13 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Récupérer le code source depuis le dépôt Git privé
-                git url: 'https://votre-git-private-url/repo.git'
+                script {
+                    checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: 'OmarCharfi-5twin5-G5-KADDEM']],
+                        userRemoteConfigs: [[url: 'https://github.com/Twin5Devexplorerskaddem/5TWIN5_DEVEXPLORERS_KADDEM.git']]
+                    ])
+                }
             }
         }
 
@@ -23,12 +28,9 @@ pipeline {
             }
         }
 
-        stage('Code Analysis') {
+        stage('sonarQube') {
             steps {
-                // Exécuter l'analyse de code avec SonarQube
-                withSonarQube(env: 'Votre-SonarQube-Env') {
-                    sh 'mvn sonar:sonar'
-                }
+                sh 'mvn sonar:sonar'
             }
         }
 
