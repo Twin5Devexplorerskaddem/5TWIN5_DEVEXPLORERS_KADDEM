@@ -7,7 +7,7 @@ pipeline {
                 script {
                     checkout([
                         $class: 'GitSCM',
-                        branches: [[name:'ChedlyKchaou-4TWIN5-G5-KADDEM']],
+                        branches: [[name: 'ChedlyKchaou-4TWIN5-G5-KADDEM']],
                         userRemoteConfigs: [[url: 'https://github.com/Twin5Devexplorerskaddem/5TWIN5_DEVEXPLORERS_KADDEM.git']]
                     ])
                 }
@@ -40,12 +40,14 @@ pipeline {
                 sh 'mvn deploy'
             }
         }
+
         stage('Docker Compose Up') {
-        steps {
-        script {
-        // Exécutez docker-compose up
-        sh "docker-compose up -d"
-        }
+            steps {
+                script {
+                    // Exécutez docker-compose up
+                    sh "docker-compose up -d"
+                }
+            }
         }
     }
 }
