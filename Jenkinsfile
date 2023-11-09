@@ -44,14 +44,6 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    sh 'docker build -t omarcharfi-5twin5-kaddem_app .'
-                }
-            }
-        }
-
         stage('Push Docker Image to Docker Hub') {
             steps {
                 script {
