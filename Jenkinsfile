@@ -16,11 +16,10 @@ pipeline {
 
         stage('Build') {
             steps {
-                // Exécuter la construction Maven
                 sh 'mvn clean install'
             }
         }
-        
+
         stage('Debug') {
             steps {
                 sh 'ls -R'
@@ -29,7 +28,6 @@ pipeline {
 
         stage('Unit Tests') {
             steps {
-                // Exécuter les tests unitaires JUnit
                 sh 'mvn test'
             }
         }
@@ -42,14 +40,32 @@ pipeline {
 
         stage('Deploy to Nexus') {
             steps {
-                // Déployer l'artéfact sur Nexus Repository
                 sh 'mvn deploy'
             }
         }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh 'docker build -t omarcharfi-5twin5-kaddem_app .'
+                }
+            }
+        }
+
+        stage('Push Docker Image to Docker Hub') {
+            steps {
+                script {
+                    sh 'docker tag omarcharfi-5twin5-kaddem_app:latest omarcharfi/omarcharfi-5twin5-kaddem_app:latest'
+                    sh 'docker login -u omarcharfi -p Omar11117532!'
+                    sh 'docker push omarcharfi/omarcharfi-5twin5-kaddem_app:latest'
+                }
+            }
+        }
+
         stage('Docker Compose Up') {
             steps {
                 script {
-                     sh "docker-compose up -d"
+                     sh 'docker-compose up -d'
                 }
             }
         }
