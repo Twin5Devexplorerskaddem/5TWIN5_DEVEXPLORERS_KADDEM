@@ -62,8 +62,8 @@ pipeline {
             steps {
                 script {
                     emailext(
-                        subject: 'Build Notification - ${currentBuild.result}',
-                        body: 'Build ${currentBuild.result}: Job ${env.JOB_NAME} - Build #${env.BUILD_NUMBER}\n\n${BUILD_URL}',
+                        subject: "Static Build Notification",
+                        body: "This is a static email content.",
                         recipientProviders: [[$class: 'CulpritsRecipientProvider']],
                         to: 'omarcharfii12@gmail.com',
                         replyTo: 'omar.charfi@esprit.tn',
