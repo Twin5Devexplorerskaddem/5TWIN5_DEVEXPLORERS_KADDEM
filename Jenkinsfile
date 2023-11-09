@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    options {
+        disableConcurrentBuilds()
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -50,6 +54,21 @@ pipeline {
                     sh 'docker tag omarcharfi-5twin5-kaddem_app:latest omarcharfi/omarcharfi-5twin5-kaddem_app:latest'
                     sh 'docker login -u omarcharfi -p Omar11117532!'
                     sh 'docker push omarcharfi/omarcharfi-5twin5-kaddem_app:latest'
+                }
+            }
+        }
+
+        stage('Email Notification') {
+            steps {
+                script {
+                    emailext(
+                        subject: 'Build Notification - ${currentBuild.result}',
+                        body: 'Build ${currentBuild.result}: Job ${env.JOB_NAME} - Build #${env.BUILD_NUMBER}\n\n${BUILD_URL}',
+                        recipientProviders: [[$class: 'CulpritsRecipientProvider']],
+                        to: 'omarcharfii12@gmail.com',
+                        replyTo: 'noreply@example.com',
+                        mimeType: 'text/html'
+                    )
                 }
             }
         }
