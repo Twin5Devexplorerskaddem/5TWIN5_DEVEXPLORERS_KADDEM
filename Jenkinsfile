@@ -64,6 +64,7 @@ pipeline {
                     emailext(
                         subject: "Static Build Notification",
                         body: "This is a static email content.",
+                        recipientProviders: [[$class: 'CulpritsRecipientProvider']],
                         to: 'omarcharfii12@gmail.com',
                         replyTo: 'omar.charfi@esprit.tn',
                         mimeType: 'text/html'
