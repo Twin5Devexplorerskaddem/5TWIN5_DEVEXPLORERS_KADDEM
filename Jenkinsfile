@@ -44,7 +44,7 @@ pipeline {
         stage('Push Docker Image to Docker Hub') {
             steps {
                 script {
-                    sh 'docker tag kaddemprojectchedly_app_1:latest chedly1/chedlykchaou-5twin5-kaddem_app:latest'
+                    sh 'docker tag kaddemprojectchedly_app:latest chedly1/chedlykchaou-5twin5-kaddem_app:latest'
                     sh 'docker login -u chedly1 -p chedly123456'
                     sh 'docker push chedly1/chedlykchaou-5twin5-kaddem_app:latest'
                 }
