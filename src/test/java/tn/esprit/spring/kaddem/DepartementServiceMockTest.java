@@ -1,80 +1,71 @@
 package tn.esprit.spring.kaddem;
 
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import tn.esprit.spring.kaddem.entities.*;
-import tn.esprit.spring.kaddem.repositories.ContratRepository;
+import tn.esprit.spring.kaddem.entities.Departement;
 import tn.esprit.spring.kaddem.repositories.DepartementRepository;
-import tn.esprit.spring.kaddem.repositories.EquipeRepository;
-import tn.esprit.spring.kaddem.repositories.EtudiantRepository;
 import tn.esprit.spring.kaddem.services.DepartementServiceImpl;
-import tn.esprit.spring.kaddem.services.EtudiantServiceImpl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
 public class DepartementServiceMockTest {
 
+    @InjectMocks
+    private DepartementServiceImpl departementService;
+
     @Mock
     private DepartementRepository departementRepository;
 
-    @InjectMocks
-    private DepartementServiceImpl departementService;
-    @Autowired
-    private EtudiantServiceImpl etudiantService;
-    @Autowired
-    private EtudiantRepository etudiantRepository;
-    @Autowired
-    private ContratRepository contratRepository;
-    @Autowired
-    private EquipeRepository equipeRepository;
-
-
-    @Before
-    void setUp() {
-
-        departementService = new DepartementServiceImpl(etudiantRepository, contratRepository, equipeRepository, departementRepository);
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
     }
-
-
 
     @Test
     public void testRetrieveAllDepartements() {
-        List<Departement> departements = new ArrayList<>();
-        departements.add(new Departement(1L, "Computer Science"));
-        departements.add(new Departement(2L, "Electrical Engineering"));
+        Departement departement1 = new Departement(1L, "Computer Science");
+        Departement departement2 = new Departement(2L, "Electrical Engineering");
 
-        when(departementRepository.findAll()).thenReturn(departements);
+        List<Departement> departementList = new ArrayList<>();
+        departementList.add(departement1);
+        departementList.add(departement2);
 
-        List<Departement> result = departementService.retrieveAllDepartements();
+        Mockito.when(departementRepository.findAll()).thenReturn(departementList);
 
-        assertEquals(2, result.size());
-        assertEquals("Computer Science", result.get(0).getNomDepart());
-        assertEquals("Electrical Engineering", result.get(1).getNomDepart());
+        List<Departement> retrievedDepartements = departementService.retrieveAllDepartements();
+
+        Mockito.verify(departementRepository).findAll();
+
+        assertEquals(2, retrievedDepartements.size());
+        assertEquals(1L, retrievedDepartements.get(0).getIdDepart());
+        assertEquals("Computer Science", retrievedDepartements.get(0).getNomDepart());
+        assertEquals(2L, retrievedDepartements.get(1).getIdDepart());
+        assertEquals("Electrical Engineering", retrievedDepartements.get(1).getNomDepart());
     }
 
     @Test
     public void testAddDepartement() {
         Departement departement = new Departement("Mechanical Engineering");
 
-        when(departementRepository.save(Mockito.any(Departement.class))).thenReturn(departement);
+        Mockito.when(departementRepository.save(Mockito.any(Departement.class))).thenReturn(departement);
 
         Departement addedDepartement = departementService.addDepartement(departement);
+
+        Mockito.verify(departementRepository).save(departement);
 
         assertEquals("Mechanical Engineering", addedDepartement.getNomDepart());
     }
@@ -83,9 +74,11 @@ public class DepartementServiceMockTest {
     public void testUpdateDepartement() {
         Departement departement = new Departement(3L, "Computer Science");
 
-        when(departementRepository.save(Mockito.any(Departement.class))).thenReturn(departement);
+        Mockito.when(departementRepository.save(Mockito.any(Departement.class))).thenReturn(departement);
 
         Departement updatedDepartement = departementService.updateDepartement(departement);
+
+        Mockito.verify(departementRepository).save(departement);
 
         assertEquals("Computer Science", updatedDepartement.getNomDepart());
     }
@@ -93,9 +86,11 @@ public class DepartementServiceMockTest {
     @Test
     public void testRetrieveDepartement() {
         Departement departement = new Departement(4L, "Computer Science");
-        when(departementRepository.findById(4L)).thenReturn(java.util.Optional.of(departement));
+        Mockito.when(departementRepository.findById(4L)).thenReturn(Optional.of(departement));
 
         Departement retrievedDepartement = departementService.retrieveDepartement(4L);
+
+        Mockito.verify(departementRepository).findById(4L);
 
         assertEquals("Computer Science", retrievedDepartement.getNomDepart());
     }
@@ -103,12 +98,12 @@ public class DepartementServiceMockTest {
     @Test
     public void testRemoveDepartement() {
         Departement departement = new Departement(5L, "Mechanical Engineering");
-        when(departementRepository.findById(5L)).thenReturn(java.util.Optional.of(departement));
+        Mockito.when(departementRepository.findById(5L)).thenReturn(Optional.of(departement));
 
         departementService.deleteDepartement(5L);
 
+        Mockito.verify(departementRepository).delete(departement);
+
         assertNotNull(departement);
     }
-
-    // Add more test methods as needed for your specific use cases.
 }
