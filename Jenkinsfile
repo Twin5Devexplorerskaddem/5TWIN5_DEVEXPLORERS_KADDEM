@@ -43,7 +43,7 @@ pipeline {
         stage('Docker Compose Up') {
             steps {
                 script {
-                     sh "docker-compose up -d"
+                     sh "DOCKER_BUILDKIT=1 docker-compose up -d"
                 }
             }
         }
