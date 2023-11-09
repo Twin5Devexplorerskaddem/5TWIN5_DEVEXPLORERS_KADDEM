@@ -1,0 +1,5 @@
+FROM openjdk:8
+WORKDIR /app
+COPY target/5Twin5-G5-Kaddem-0.0.1-SNAPSHOT.jar 5Twin5-G5-Kaddem-0.0.1-SNAPSHOT.jar
+EXPOSE 8080
+CMD ["java", "-jar","5Twin5-G5-Kaddem-0.0.1-SNAPSHOT.jar"]
