@@ -20,6 +20,12 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
+        
+        stage('Debug') {
+            steps {
+                sh 'ls -R'
+            }
+        }
 
         stage('Unit Tests') {
             steps {
