@@ -50,6 +50,24 @@ pipeline {
                 }
             }
         }
+        
+        stage('Email Notification Msg') {
+            steps {
+                script {
+                    emailext(
+                        subject: "Static Build Notification",
+                        body: "This is a static email content.",
+                        recipientProviders: [[$class: 'CulpritsRecipientProvider']],
+                        to: 'chedly.kchaou@esprit.tn',
+                        replyTo: 'springbootanulattest@gmail.com',
+                        mimeType: 'text/html'
+                    )
+                }
+            }
+        }
+
+
+        
 
         stage('Docker Compose Up') {
             steps {
