@@ -29,7 +29,6 @@ pipeline {
 
         stage('Unit Tests') {
             steps {
-                // Exécuter les tests unitaires JUnit
                 sh 'mvn test'
             }
         }
@@ -42,7 +41,6 @@ pipeline {
 
         stage('Deploy to Nexus') {
             steps {
-                // Déployer l'artéfact sur Nexus Repository
                 sh 'mvn deploy'
             }
         }
