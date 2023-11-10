@@ -60,7 +60,13 @@
         </dependency>
 
     </dependencies>
-
+    <distributionManagement>
+        <repository>
+            <id>deploymentRepo</id>
+            <name>Nexus Repository</name>
+            <url>http://http://172.10.0.140:8081/repository/deploymentRepo/</url>
+        </repository>
+    </distributionManagement>
     <build>
         <plugins>
             <plugin>
