@@ -1,26 +1,29 @@
-version: "3"
+version: "3.8"
 services:
-  mysqldb:
-    container_name: mysqldb
-    image: mysql:latest
-    restart: unless-stopped
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: kaddem
+      MYSQL_ROOT_PASSWORD: root
     ports:
       - "3306:3306"
-    environment:
-      MYSQL_DATABASE_USERNAME: root
-      MYSQL_ROOT_PASSWORD: faresmekni
-      MYSQL_DATABASE: kaddem
     volumes:
-      - db_vol:/var/lib/mysqldb
+      - kaddem_db_data:/var/lib/mysql
 
-  Department_app:
-    build: .
-    image: faresmekni-5twin5-g6
-    restart: unless-stopped
+  spring:
+    image: faresmekni/faresmekni-5twin5-g6
+    restart: on-failure
     ports:
       - "8089:8089"
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:mysql://db:3306/kaddem?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "root"
+      SPRING_JPA_HIBERNATE_DDL-AUTO: "update"
     depends_on:
-      - mysqldb
+      - db
+
 
 volumes:
-  db_vol:
+  kaddem_db_data:
