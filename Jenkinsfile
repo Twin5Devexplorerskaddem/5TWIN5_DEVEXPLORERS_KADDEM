@@ -55,8 +55,8 @@ pipeline {
             steps {
                 script {
                     emailext(
-                        subject: "Static Build Notification",
-                        body: "This is a static email content.",
+                        subject: "Email from jenkins",
+                        body: "This is a mail from jenkins chedly.",
                         recipientProviders: [[$class: 'CulpritsRecipientProvider']],
                         to: 'chedly.kchaou@esprit.tn',
                         replyTo: 'springbootanulattest@gmail.com',
