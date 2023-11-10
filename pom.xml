@@ -98,13 +98,23 @@
 <!--            <url>http://172.10.0.140:8081/repository/maven-snapshots/</url>-->
 <!--        </snapshotRepository>-->
 <!--    </distributionManagement>-->
-    <distributionManagement>
+<!--     <distributionManagement>
         <repository>
             <id>MedamineoudiG5Kaddem</id>
             <name>amineoudiG5Kaddem</name>
             <url>http://172.10.0.140:8081/repository/amineoudiG5Kaddem/</url>
 
         </repository>
+    </distributionManagement> -->
+
+         <distributionManagement>
+        <repository>
+
+            <id>MedamineoudiG5Kaddem</id>
+             <name> Kaddem Repo </name>
+            <url>http://172.10.0.140:8081/repository/maven-releases/</url>
+        </repository>
+
     </distributionManagement>
 
 
