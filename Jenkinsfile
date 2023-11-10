@@ -68,7 +68,11 @@ pipeline {
        steps {
        sh 'mvn deploy -DskipTests'
              }
-            }
+        }
+
+
+
+
         stage('Build docker image'){
             steps{
                 script{
