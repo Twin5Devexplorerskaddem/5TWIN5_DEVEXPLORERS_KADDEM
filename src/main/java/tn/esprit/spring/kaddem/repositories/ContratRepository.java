@@ -1,4 +1,4 @@
-package tn.esprit.spring.kaddem.repositories;
+/**package tn.esprit.spring.kaddem.repositories;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -25,4 +25,4 @@ public Integer getnbContratsValides(@Param("startDate") Date startDate, @Param("
 
 public List<Contrat> findAll();
 public Contrat findByIdContrat(Integer idContrat);
-}
+}*/

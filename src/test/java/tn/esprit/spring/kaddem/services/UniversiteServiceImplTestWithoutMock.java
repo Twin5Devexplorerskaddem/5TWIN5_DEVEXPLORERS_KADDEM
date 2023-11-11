@@ -11,7 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class UniversiteServiceImplTestwithoutMock {
+class UniversiteServiceImplTestWithoutMock {
     @Autowired
     private IUniversiteService universiteService;
 
@@ -20,14 +20,14 @@ class UniversiteServiceImplTestwithoutMock {
     }
 
     @Test
-    public void testRetrieveAllUniversites() {
+     void testRetrieveAllUniversites() {
         List<Universite> universites = universiteService.retrieveAllUniversites();
         assertNotNull(universites);
         assertFalse(universites.isEmpty());
     }
 
     @Test
-    public void testAddUniversite() {
+     void testAddUniversite() {
         Universite universite = new Universite("Sample University", "Location", "Description", "sample@email.com");
         Universite addedUniversite = universiteService.addUniversite(universite);
         assertNotNull(addedUniversite);
@@ -40,7 +40,7 @@ class UniversiteServiceImplTestwithoutMock {
     }
 
     @Test
-    public void testUpdateUniversite() {
+     void testUpdateUniversite() {
         Universite universite = new Universite("Sample University", "Location", "Description", "sample@email.com");
         Universite addedUniversite = universiteService.addUniversite(universite);
 
@@ -59,7 +59,7 @@ class UniversiteServiceImplTestwithoutMock {
     }
 
     @Test
-    public void testRetrieveUniversite() {
+     void testRetrieveUniversite() {
         Universite universite = new Universite("Sample University", "Location", "Description", "sample@email.com");
         Universite addedUniversite = universiteService.addUniversite(universite);
 
@@ -72,7 +72,7 @@ class UniversiteServiceImplTestwithoutMock {
     }
 
     @Test
-    public void testDeleteUniversite() {
+     void testDeleteUniversite() {
         Universite universite = new Universite("Sample University", "Location", "Description", "sample@email.com");
         Universite addedUniversite = universiteService.addUniversite(universite);
 

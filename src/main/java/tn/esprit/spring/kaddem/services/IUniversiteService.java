@@ -1,13 +1,11 @@
 package tn.esprit.spring.kaddem.services;
 
-import tn.esprit.spring.kaddem.entities.Departement;
 import tn.esprit.spring.kaddem.entities.Universite;
 
 import java.util.List;
-import java.util.Set;
 
 public interface IUniversiteService {
-   public List<Universite> retrieveAllUniversites();
+    List<Universite> retrieveAllUniversites();
 
     Universite addUniversite (Universite  u);
 
@@ -15,6 +13,6 @@ public interface IUniversiteService {
 
     Universite retrieveUniversite (Integer idUniversite);
 
-    public  void deleteUniversite(Integer idUniversite);
+      void deleteUniversite(Integer idUniversite);
 
 }

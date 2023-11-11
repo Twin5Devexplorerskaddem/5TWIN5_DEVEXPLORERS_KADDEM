@@ -1,6 +1,6 @@
 package tn.esprit.spring.kaddem.controllers;
 
-import lombok.AllArgsConstructor;
+/**import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.kaddem.entities.Etudiant;
@@ -53,7 +53,7 @@ public class EtudiantRestController {
 		etudiantService.assignEtudiantToDepartement(etudiantId, departementId);
     }
 //addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat, Integer idEquipe)
-    /* Ajouter un étudiant tout en lui affectant un contrat et une équipe */
+    /* Ajouter un étudiant tout en lui affectant un contrat et une équipe
     @PostMapping("/add-assign-Etudiant/{idContrat}/{idEquipe}")
     @ResponseBody
     public Etudiant addEtudiantWithEquipeAndContract(@RequestBody Etudiant e, @PathVariable("idContrat") Integer idContrat, @PathVariable("idEquipe") Integer idEquipe) {
@@ -67,6 +67,6 @@ public class EtudiantRestController {
 		return etudiantService.getEtudiantsByDepartement(idDepartement);
 	}
 
-}
+}*/
 
 

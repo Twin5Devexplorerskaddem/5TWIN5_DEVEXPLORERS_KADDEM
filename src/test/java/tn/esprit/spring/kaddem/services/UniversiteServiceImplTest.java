@@ -8,7 +8,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.spring.kaddem.entities.Universite;
 import tn.esprit.spring.kaddem.repositories.UniversiteRepository;
 
@@ -18,7 +17,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
-public class UniversiteServiceImplTest {
+ class UniversiteServiceImplTest {
 
     @InjectMocks
     private UniversiteServiceImpl universiteService;
@@ -32,7 +31,7 @@ public class UniversiteServiceImplTest {
     }
 
     @Test
-    public void testAddUniversite() {
+     void testAddUniversite() {
         Universite sampleUniversite = new Universite();
         sampleUniversite.setIdUniv(1);
         sampleUniversite.setNomUniv("Sample University");
@@ -54,7 +53,7 @@ public class UniversiteServiceImplTest {
     }
 
     @Test
-    public void testRetrieveAllUniversites() {
+     void testRetrieveAllUniversites() {
         Universite universite1 = new Universite();
         universite1.setIdUniv(1);
         universite1.setNomUniv("University 1");
@@ -93,7 +92,7 @@ public class UniversiteServiceImplTest {
     }
 
     @Test
-    public void testUpdateUniversite() {
+     void testUpdateUniversite() {
         Universite sampleUniversite = new Universite();
         sampleUniversite.setIdUniv(1);
         sampleUniversite.setNomUniv("Sample University");
@@ -115,7 +114,7 @@ public class UniversiteServiceImplTest {
     }
 
     @Test
-    public void testRetrieveUniversite() {
+     void testRetrieveUniversite() {
         Universite sampleUniversite = new Universite();
         sampleUniversite.setIdUniv(1);
         sampleUniversite.setLocalisation("Sample Location");

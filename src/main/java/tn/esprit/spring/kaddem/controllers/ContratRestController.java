@@ -1,4 +1,4 @@
-package tn.esprit.spring.kaddem.controllers;
+/**package tn.esprit.spring.kaddem.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +52,7 @@ public class ContratRestController {
 		/*@PutMapping(value = "/assignContratToEtudiant/{ce}/{nomE}/{prenomE}")
 		public Contrat assignContratToEtudiant (Contrat ce, String nomE, String prenomE){
 		return 	(contratService.affectContratToEtudiant(ce, nomE, prenomE));
-		}*/
+		}
 
 	@PutMapping(value = "/assignContratToEtudiant/{idContrat}/{nomE}/{prenomE}")
 	public Contrat assignContratToEtudiant (Integer idContrat, String nomE, String prenomE){
@@ -86,6 +86,6 @@ public class ContratRestController {
 
 		return contratService.getChiffreAffaireEntreDeuxDates(startDate, endDate);
 	}
-}
+}*/
 
 

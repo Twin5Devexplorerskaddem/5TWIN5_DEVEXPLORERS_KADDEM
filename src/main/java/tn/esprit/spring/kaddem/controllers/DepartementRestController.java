@@ -1,6 +1,6 @@
 package tn.esprit.spring.kaddem.controllers;
 
-import lombok.AllArgsConstructor;
+/**import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.kaddem.entities.Departement;
 import tn.esprit.spring.kaddem.services.IDepartementService;
@@ -43,6 +43,6 @@ public class DepartementRestController {
 		Departement departement= departementService.updateDepartement(e);
 		return departement;
 	}
-}
+}*/
 
 

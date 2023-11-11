@@ -1,4 +1,4 @@
-package tn.esprit.spring.kaddem.controllers;
+/**package tn.esprit.spring.kaddem.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +52,5 @@ public class EquipeRestController {
 		 equipeService.evoluerEquipes() ;
 	}
 }
-
+*/
 
