@@ -39,6 +39,12 @@ environment {
             }
         }
 
+        stage('prepare workspace') {
+                steps { 
+                sh 'sudo chown -R jenkins:jenkins /var/lib/jenkins/workspace/Kaddemoudi Project'
+            }
+        }
+
         stage('sonarQube') {
             steps {
                 sh 'mvn sonar:sonar'
