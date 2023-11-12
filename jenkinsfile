@@ -44,6 +44,24 @@ pipeline {
                 sh 'mvn deploy'
             }
         }
+
+
+
+        stage('Email Notification Msg') {
+                    steps {
+                        script {
+                            emailext(
+                                subject: "Email from jenkins",
+                                body: "This is an email.",
+                                recipientProviders: [[$class: 'CulpritsRecipientProvider']],
+                                to: 'amed14170@gmail.com',
+                                replyTo: 'amed14170@gmail.com',
+                                mimeType: 'text/html'
+                            )
+                        }
+                    }
+                }
+
      stage('Docker Compose Up') {
             steps {
                 script {
