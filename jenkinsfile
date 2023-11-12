@@ -1,9 +1,11 @@
 pipeline {
+
+agent any
 environment {
     registryCredential = 'dockerhub'
     dockerImage = ''
   }
-    agent any
+    
 
     stages {
         stage('Checkout') {
