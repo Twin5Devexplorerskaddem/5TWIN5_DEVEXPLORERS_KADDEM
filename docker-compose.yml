@@ -1,25 +1,45 @@
-version: "3"
+version: "3.8"
 services:
-  mysql:
-    container_name: mysql
-    image: mysql:latest
-    restart: unless-stopped
-    ports:
-      - "3308:3308"
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: kaddem
-    volumes:
-      - db_vol:/var/lib/mysqldb
 
-  Universite_app:
-    build: .
-    image: farahhasnaoui-5twin5-g5-kaddem
+  # database application service
+  mysqldb:
+    image: mysql:5.7
     restart: unless-stopped
     ports:
-      - "8089:8089"
+      - 3308:3308
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - db:/var/lib/mysql
+
+    # backend application service
+  achat-backend:
     depends_on:
       - mysql
+    build: ./
+    restart: on-failure
+    ports:
+      - 8089:8089
 
+
+
+        
+    stdin_open: true
+    tty: true
+    environment:
+      MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: 'prometheus'
+      MANAGEMENT_ENDPOINT_PROMETHEUS_ENABLED: 'true'
+      MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED: 'true'
+      MANAGEMENT_ENDPOINT_HEALTH_SHOW-DETAILS: 'always'
+
+
+      SPRING APPLICATION_JSON: '{
+        "spring.datasource.url": "jdbc:mysql://mysqldb:3308/kaddem?createDatabaseIfNotExist=true",
+        "spring.datasource.username": "root",
+        "spring.datasource.password": null,
+        "spring.jpa.properties.hibernate.dialect": "org.hibernate.dialect.MySQL5InnoDBDialect",
+        "spring.jpa.hibernate.ddl-auto": "update"
+      }'
+  
 volumes:
-  db_vol:
+  db :
