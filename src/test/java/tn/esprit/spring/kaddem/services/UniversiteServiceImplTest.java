@@ -10,9 +10,11 @@ import tn.esprit.spring.kaddem.entities.Universite;
 import tn.esprit.spring.kaddem.repositories.UniversiteRepository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
  class UniversiteServiceImplTest {
@@ -149,5 +151,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
       universiteService.deleteUniversite(1);
       Mockito.verify(universiteRepository).delete(sampleUniversite);
    }
+
+   @Test
+   void testRetrieveAllUniversitesEmptyList() {
+      Mockito.when(universiteRepository.findAll()).thenReturn(Collections.emptyList());
+
+      List<Universite> retrievedUniversites = universiteService.retrieveAllUniversites();
+
+      Mockito.verify(universiteRepository).findAll();
+
+      assertTrue(retrievedUniversites.isEmpty());
+   }
+   @Test
+   void testRetrieveAllUniversitesException() {
+      Mockito.when(universiteRepository.findAll()).thenThrow(new RuntimeException("Simulating an exception from the repository"));
+
+      assertThrows(RuntimeException.class, () -> universiteService.retrieveAllUniversites());
+   }
+
 
 }
