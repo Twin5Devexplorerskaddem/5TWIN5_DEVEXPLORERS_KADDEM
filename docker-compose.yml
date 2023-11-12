@@ -2,7 +2,7 @@ version: "3.8"
 services:
 
   # database application service
-  mysqldb:
+  mysql:
     image: mysql:5.7
     restart: unless-stopped
     ports:
@@ -13,7 +13,7 @@ services:
       - db:/var/lib/mysql
 
     # backend application service
-  achat-backend:
+  kaddem-backend:
     depends_on:
       - mysql
     build: ./
