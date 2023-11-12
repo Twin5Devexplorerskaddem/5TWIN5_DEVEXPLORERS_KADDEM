@@ -8,7 +8,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import tn.esprit.spring.kaddem.entities.Universite;
 import tn.esprit.spring.kaddem.repositories.UniversiteRepository;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -162,12 +161,49 @@ import static org.junit.jupiter.api.Assertions.*;
 
       assertTrue(retrievedUniversites.isEmpty());
    }
+
    @Test
    void testRetrieveAllUniversitesException() {
       Mockito.when(universiteRepository.findAll()).thenThrow(new RuntimeException("Simulating an exception from the repository"));
 
       assertThrows(RuntimeException.class, () -> universiteService.retrieveAllUniversites());
    }
+
+    @Test
+    void testAddUniversiteWithDifferentId() {
+        Universite sampleUniversite = new Universite();
+        sampleUniversite.setIdUniv(-1); // Negative ID
+        sampleUniversite.setNomUniv("Sample University");
+        sampleUniversite.setLocalisation("Sample Location");
+        sampleUniversite.setDescription("Sample Description");
+        sampleUniversite.setEmail("sample@example.com");
+
+        Mockito.when(universiteRepository.save(Mockito.any(Universite.class))).thenReturn(sampleUniversite);
+
+        Universite addedUniversite = universiteService.addUniversite(sampleUniversite);
+
+        assertEquals(-1, addedUniversite.getIdUniv());
+    }
+
+
+    @Test
+    void testRetrieveAllUniversitesWithSingleUniversity() {
+        Universite singleUniversity = new Universite();
+        singleUniversity.setIdUniv(1);
+        singleUniversity.setNomUniv("University 1");
+        singleUniversity.setLocalisation("Location 1");
+        singleUniversity.setDescription("Description 1");
+        singleUniversity.setEmail("email1@example.com");
+
+        Mockito.when(universiteRepository.findAll()).thenReturn(Collections.singletonList(singleUniversity));
+
+        List<Universite> retrievedUniversites = universiteService.retrieveAllUniversites();
+
+        Mockito.verify(universiteRepository).findAll();
+
+        assertEquals(1, retrievedUniversites.size());
+    }
+
 
 
 }
