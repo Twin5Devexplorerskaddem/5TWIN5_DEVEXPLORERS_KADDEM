@@ -132,4 +132,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         assertEquals("Sample Description", retrievedUniversite.getDescription());
         assertEquals("sample@example.com", retrievedUniversite.getEmail());
     }
+
+   @Test
+   void testDeleteUniversite() {
+
+      Universite sampleUniversite = new Universite();
+      sampleUniversite.setIdUniv(1);
+      sampleUniversite.setNomUniv("Sample University");
+      sampleUniversite.setLocalisation("Sample Location");
+      sampleUniversite.setDescription("Sample Description");
+      sampleUniversite.setEmail("sample@example.com");
+      Mockito.when(universiteRepository.findById(1)).thenReturn(Optional.of(sampleUniversite));
+      universiteService.deleteUniversite(1);
+      Mockito.verify(universiteRepository).delete(sampleUniversite);
+   }
+
 }
