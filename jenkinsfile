@@ -1,9 +1,4 @@
 pipeline {
-  environment {
-    registry = "amineoudi/kaddem"
-    registryCredential = 'dockerhub'
-    dockerImage = ''
-  }
 agent any
     stages {
         stage('Checkout') {
@@ -43,24 +38,6 @@ agent any
                 sh 'mvn sonar:sonar'
             }
         }
-
-        stage('Building image') {
-              steps{
-                script {
-                  dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                }
-              }
-            }
-          stage('Deploy Image') {
-              steps{
-                script {
-                  docker.withRegistry( '', registryCredential ) {
-                    dockerImage.push()
-                  }
-                }
-              }
-            }
-
         stage('Deploy to Nexus') {
             steps {
                 sh 'mvn deploy'
