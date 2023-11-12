@@ -41,7 +41,7 @@ environment {
 
         stage('prepare workspace') {
                 steps { 
-                sh 'sudo chown -R jenkins:jenkins /var/lib/jenkins/workspace/Kaddemoudi Project'
+                sh 'sudo chown -R jenkins:jenkins /var/lib/jenkins/workspace/Kaddemoudiamine'
             }
         }
 
