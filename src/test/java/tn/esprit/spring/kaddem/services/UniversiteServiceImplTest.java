@@ -1,12 +1,10 @@
 package tn.esprit.spring.kaddem.services;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import tn.esprit.spring.kaddem.entities.Universite;
 import tn.esprit.spring.kaddem.repositories.UniversiteRepository;
@@ -25,10 +23,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
     @Mock
     private UniversiteRepository universiteRepository;
 
-    @BeforeEach
+   /*@BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-    }
+    }**/
 
     @Test
      void testAddUniversite() {
@@ -54,25 +52,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
     @Test
      void testRetrieveAllUniversites() {
-        Universite universite1 = new Universite();
-        universite1.setIdUniv(1);
-        universite1.setNomUniv("University 1");
-        universite1.setLocalisation("Location 1");
-        universite1.setDescription("Description 1");
-        universite1.setEmail("email1@example.com");
+       List<Universite> universiteList = getUniversites();
 
-        Universite universite2 = new Universite();
-        universite2.setIdUniv(2);
-        universite2.setNomUniv("University 2");
-        universite2.setLocalisation("Location 2");
-        universite2.setDescription("Description 2");
-        universite2.setEmail("email2@example.com");
-
-        List<Universite> universiteList = new ArrayList<>();
-        universiteList.add(universite1);
-        universiteList.add(universite2);
-
-        Mockito.when(universiteRepository.findAll()).thenReturn(universiteList);
+       Mockito.when(universiteRepository.findAll()).thenReturn(universiteList);
 
         List<Universite> retrievedUniversites = universiteService.retrieveAllUniversites();
 
@@ -91,7 +73,28 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         assertEquals("email2@example.com", retrievedUniversites.get(1).getEmail());
     }
 
-    @Test
+   private static List<Universite> getUniversites() {
+      Universite universite1 = new Universite();
+      universite1.setIdUniv(1);
+      universite1.setNomUniv("University 1");
+      universite1.setLocalisation("Location 1");
+      universite1.setDescription("Description 1");
+      universite1.setEmail("email1@example.com");
+
+      Universite universite2 = new Universite();
+      universite2.setIdUniv(2);
+      universite2.setNomUniv("University 2");
+      universite2.setLocalisation("Location 2");
+      universite2.setDescription("Description 2");
+      universite2.setEmail("email2@example.com");
+
+      List<Universite> universiteList = new ArrayList<>();
+      universiteList.add(universite1);
+      universiteList.add(universite2);
+      return universiteList;
+   }
+
+   @Test
      void testUpdateUniversite() {
         Universite sampleUniversite = new Universite();
         sampleUniversite.setIdUniv(1);
