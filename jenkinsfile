@@ -39,11 +39,6 @@ environment {
             }
         }
 
-        stage('prepare workspace') {
-                steps { 
-                sh 'sudo chown -R jenkins:jenkins /var/lib/jenkins/workspace'
-            }
-        }
 
         stage('sonarQube') {
             steps {
