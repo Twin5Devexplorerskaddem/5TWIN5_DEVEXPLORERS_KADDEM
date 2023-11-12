@@ -1,22 +1,18 @@
 package tn.esprit.spring.kaddem.entities;
-
 import lombok.Getter;
-import lombok.Setter;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
-@Entity
 @Getter
-@Setter
+@Entity
 public class Universite implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idUniv;
     private String nomUniv;
-    private String localisation; // Add localisation attribute
-    private String description;  // Add description attribute
-    private String email;        // Add email attribute
+    private String localisation;
+    private String description;
+    private String email;
 
     public Universite() {
     }
@@ -29,4 +25,24 @@ public class Universite implements Serializable {
         this.email = email;
     }
 
+
+    public void setIdUniv(Integer idUniv) {
+        this.idUniv = idUniv;
+    }
+
+    public void setNomUniv(String nomUniv) {
+        this.nomUniv = nomUniv;
+    }
+
+    public void setLocalisation(String localisation) {
+        this.localisation = localisation;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
