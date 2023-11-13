@@ -5,13 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.kaddem.entities.Etudiant;
 import tn.esprit.spring.kaddem.services.IEtudiantService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
 @RequestMapping("/etudiant")
-@CrossOrigin(origins = "*")	
+@CrossOrigin(origins = "*", allowedHeaders = "*")	
 public class EtudiantRestController {
 	@Autowired
 	IEtudiantService etudiantService;
