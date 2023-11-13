@@ -48,7 +48,7 @@ scrape_configs:
       password: fares
 
   - job_name: 'spring-actuator'
-    metrics_path: '//actuator/prometheus'
+    metrics_path: '/kaddem/actuator/prometheus'
     scrape_interval: 5s  # Adjust the scrape interval as needed
     static_configs:
       - targets: ['172.10.0.140:8089']  # Replace with your Spring Boot app's address
