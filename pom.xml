@@ -96,6 +96,7 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                   <mainClass>tn.esprit.spring.kaddem.KaddemApplication</mainClass>
                 </configuration>
             </plugin>
             <plugin>
