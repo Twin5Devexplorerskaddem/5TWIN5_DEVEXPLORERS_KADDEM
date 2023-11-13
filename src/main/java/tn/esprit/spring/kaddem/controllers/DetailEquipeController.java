@@ -22,7 +22,7 @@ public class DetailEquipeController {
         List<DetailEquipe> listEquipes = equipeService.retrieveAllDetailEquipes();
         return listEquipes;
     }
-    //7
+
     // http://localhost:8089/Kaddem/Detailequipe/retrieve-equipe/8
     @GetMapping(value = "/retrieve-detailequipe/{equipe-id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -36,7 +36,7 @@ public class DetailEquipeController {
         DetailEquipe equipe = equipeService.addEquipe(e);
         return equipe;
     }
-//ufhgvjygyug
+
     // http://localhost:8089/Kaddem/Detailequipe/remove-equipe/1
     @DeleteMapping("/remove-detailequipe/{idDetailEquipe}")
     public void removeEquipe(@PathVariable("idDetailEquipe") Integer equipeId) {
