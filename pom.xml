@@ -6,7 +6,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.7.5</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/> 
     </parent>
 
     <groupId>tn.esprit.spring</groupId>
@@ -70,14 +70,14 @@
 
     </dependencies>
 
-    <distributionManagement>
+<!--     <distributionManagement>
         <repository>
             <id>deploymentRepo</id>
             <name>Nexus Repository</name>
             <url>http://172.10.0.140:8081/repository/maven-releases/</url>
 
         </repository>
-    </distributionManagement>
+    </distributionManagement> -->
 
 
     <build>
