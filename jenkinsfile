@@ -50,7 +50,7 @@ agent any
                         script {
                             
                             sh 'docker tag kaddemoudiamine_app amineoudi/kaddemoudiamine_app:latest'
-                            sh 'docker login -u amineoudi -p admin'
+                            sh 'docker login -u amineoudi -p Aminee7777'
                             sh 'docker push amineoudi/kaddemoudiamine_app:latest'
                         }
                     }
