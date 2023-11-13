@@ -11,7 +11,15 @@ services:
       - "3307:3306"
     volumes:
       - db:/var/lib/mysql
-
+  angular-app:
+    build:
+      context: ./path/to/your/angular/app
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - "4200:4200"
+    depends_on:
+      - mysqldb
   app:
     depends_on:
       - mysqldb
