@@ -42,6 +42,6 @@ services:
     ports:
       - "4100:4100"
     depends_on:
-      - mysqldb
+      - app
 volumes:
   db:
