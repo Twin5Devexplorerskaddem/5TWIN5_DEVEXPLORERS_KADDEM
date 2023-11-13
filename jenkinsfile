@@ -45,13 +45,7 @@ agent any
                 sh 'mvn deploy'
             }
         }
-         stage('Build docker image'){
-                    steps{
-                        script{
-                            sh 'docker build -t spring/kaddem .'
-                        }
-                    }
-                }
+         
      stage('Docker Compose Up') {
             steps {
                 script {
