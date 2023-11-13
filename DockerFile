@@ -1,5 +1,5 @@
 ### STAGE 1: BUILD ###
-FROM node:14.17.3 AS build
+FROM node:16.16-alpine AS build
 WORKDIR /dist/src/app
 COPY . .
 RUN npm install -g @angular/cli
