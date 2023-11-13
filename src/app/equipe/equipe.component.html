@@ -1,0 +1,112 @@
+<!-- equipe.component.html -->
+<div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Gestion d'Équipes</h4>
+      <h5 class="card-subtitle">Liste des Équipes</h5>
+  
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-outline-info" (click)="toggleAddPopup()">Ajouter</button>
+      </div>
+  
+      <!-- Popup Add Équipe -->
+      <div *ngIf="isAddPopupOpen" class="modal" tabindex="-1" role="dialog" style="display: block;">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Ajouter Équipe</h5>
+            </div>
+            <div class="modal-body">
+              <form (ngSubmit)="createEquipe()">
+                <div class="form-group">
+                  <label for="equipeNom">Nom de l'Équipe</label>
+                  <input type="text" class="form-control" id="equipeNom" placeholder="Entrez le nom de l'équipe" [(ngModel)]="addEquipeData.nomEquipe" [ngModelOptions]="{ standalone: true }">
+                </div>
+  
+                <div class="form-group">
+                  <label for="equipeNiveau">Niveau de l'Équipe</label>
+                  <select class="form-control" id="equipeNiveau" [(ngModel)]="addEquipeData.niveau" [ngModelOptions]="{ standalone: true }">
+                    <option value="JUNIOR">Junior</option>
+                    <option value="SENIOR">Senior</option>
+                    <option value="EXPERT">Expert</option>
+                  </select>
+                </div>
+  
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-danger" (click)="toggleAddPopup()">Fermer</button>
+              <button type="button" class="btn btn-outline-success" (click)="createEquipe()">Enregistrer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  <!-- Popup Update Équipe -->
+  <div *ngIf="isUpdatePopupOpen" class="modal" tabindex="-1" role="dialog" style="display: block;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modifier Équipe</h5>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="updateEquipe(updateEquipeData)">
+            <div class="form-group">
+              <label for="updateEquipeNom">Nom de l'Équipe</label>
+              <input type="text" class="form-control" id="updateEquipeNom" placeholder="Entrez le nom de l'équipe"
+                [(ngModel)]="updateEquipeData.nomEquipe" [ngModelOptions]="{ standalone: true }">
+            </div>
+
+            <div class="form-group">
+              <label for="updateEquipeNiveau">Niveau de l'Équipe</label>
+              <select class="form-control" id="updateEquipeNiveau" [(ngModel)]="updateEquipeData.niveau"
+                [ngModelOptions]="{ standalone: true }">
+                <option value="JUNIOR">Junior</option>
+                <option value="SENIOR">Senior</option>
+                <option value="EXPERT">Expert</option>
+              </select>
+            </div>
+
+            <!-- Add other fields as needed -->
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-danger" (click)="toggleUpdatePopup()">Fermer</button>
+          <button type="button" class="btn btn-outline-success" (click)="updateEquipe(updateEquipeData)">Enregistrer</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- Équipe Table -->
+ <!-- Équipe Table -->
+<div class="table-responsive">
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th class="text-dark font-medium fs-4">Nom</th>
+        <th class="text-dark font-medium fs-4">Niveau</th>
+        <!-- Add other headers as needed -->
+        <th class="text-dark font-medium fs-4">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let equipe of equipes">
+        <td>{{ equipe.nomEquipe }}</td>
+        <td>{{ equipe.niveau }}</td>
+        <td>
+          <button style="background: transparent; border: 2px solid blue; color: blue; padding: 5px 10px; cursor: pointer;" (click)="deleteEquipe(equipe.idEquipe)">
+            <i class="fa fa-trash"></i> Supprimer
+          </button>
+          <button style="background: transparent; border: 2px solid blue; color: blue; padding: 5px 10px; cursor: pointer;" (click)="updateEquipePopup(equipe)">
+            <i class="fa fa-pencil"></i> Modifier
+          </button>
+        </td>
+        
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+    </div>
+  </div>
+  
