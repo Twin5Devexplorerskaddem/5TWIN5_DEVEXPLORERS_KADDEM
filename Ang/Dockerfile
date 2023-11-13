@@ -1,22 +1,12 @@
-
-FROM node:14 AS builder
-
+# base image
+FROM node:18-alpine AS build-step
+# set working directory
 WORKDIR /app
-
-COPY package*.json ./
-
-
-RUN npm install
-
-
+COPY package.json ./
+RUN npm install --force
 COPY . .
-
 RUN npm run build
-
-FROM nginx:alpine
-
-COPY --from=builder /app/dist/contrat /usr/share/nginx/html
-
-EXPOSE 4100
-
-CMD ["nginx", "-g", "daemon off;"]
+FROM nginx:1.16.1-alpine
+COPY --from=build-step /app/dist/* /usr/share/nginx/html/
+EXPOSE 4200
+CMD ["nginx","-g","daemon off;"]
