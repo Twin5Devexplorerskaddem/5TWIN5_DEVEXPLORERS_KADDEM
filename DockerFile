@@ -2,9 +2,15 @@
 FROM node:16.16-alpine AS build
 WORKDIR /dist/src/app
 COPY . .
-RUN npm install -g @angular/cli
+RUN npm install -g @angular/cli@16.2.6
 RUN npm cache clean --force
 RUN npm install --force
+
+# Configuration du proxy npm (ajustez en fonction de vos paramètres)
+RUN npm config set registry "https://registry.npmjs.org/"
+RUN npm config set proxy http://your-proxy-server:your-proxy-port
+RUN npm config set https-proxy http://your-proxy-server:your-proxy-port
+
 RUN ng build --prod
 
 ### STAGE 2: RUN ###
