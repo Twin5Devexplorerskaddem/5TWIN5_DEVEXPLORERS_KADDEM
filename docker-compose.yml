@@ -41,6 +41,7 @@ services:
     restart: on-failure
     ports:
       - "4100:4100"
-
+    depends_on:
+      - app
 volumes:
   db:
