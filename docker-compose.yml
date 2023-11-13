@@ -11,8 +11,8 @@ services:
       - "3307:3306"
     volumes:
       - db:/var/lib/mysql
- 
-  app:
+
+  springbootapp:
     depends_on:
       - mysqldb
     build:
@@ -34,5 +34,10 @@ services:
     stdin_open: true
     tty: true
 
-volumes:
-  db:
+  angularapp:
+    build:
+      context: ./Angular
+      dockerfile: DockerFile
+    restart: on-failure
+    ports:
+      - "4100:4100"
