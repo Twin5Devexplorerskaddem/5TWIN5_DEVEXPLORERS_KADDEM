@@ -22,6 +22,7 @@ public class DetailEquipeController {
         List<DetailEquipe> listEquipes = equipeService.retrieveAllDetailEquipes();
         return listEquipes;
     }
+    //7
     // http://localhost:8089/Kaddem/Detailequipe/retrieve-equipe/8
     @GetMapping(value = "/retrieve-detailequipe/{equipe-id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
