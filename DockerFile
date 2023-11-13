@@ -1,6 +1,6 @@
 ### STAGE 1: BUILD ###
 FROM node:16.16-alpine AS build
-WORKDIR /dist/src/app
+WORKDIR /app
 COPY . .
 RUN npm install -g @angular/cli@16.2.6
 RUN npm cache clean --force
@@ -11,10 +11,11 @@ RUN npm config set registry "https://registry.npmjs.org/"
 RUN npm config set proxy http://your-proxy-server:your-proxy-port
 RUN npm config set https-proxy http://your-proxy-server:your-proxy-port
 
-RUN ng build --prod
+# Utilisez --configuration=production au lieu de --prod
+RUN ng build --configuration=production
 
 ### STAGE 2: RUN ###
 FROM nginx:latest AS ngi
-COPY --from=build /dist/src/app/dist/crudtuto-Front /usr/share/nginx/html
-COPY /nginx.conf  /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist/crudtuto-Front /usr/share/nginx/html
+COPY /nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 86
