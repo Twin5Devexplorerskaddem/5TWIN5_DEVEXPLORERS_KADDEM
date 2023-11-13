@@ -1,18 +1,56 @@
+# Global configuration
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          # - alertmanager:9093
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+
+# Scrape configurations go under the 'scrape_configs' key. You should define jobs there.
 scrape_configs:
-  - job_name: 'prometheus'
-    scrape_interval: 5s
+  - job_name: "prometheus"
     static_configs:
-      - targets: ['172.10.0.140:9090']
+      - targets: ["172.10.0.140:9090"]
 
-  - job_name: 'spring-actuator'
-    metrics_path: '/actuator/prometheus'
-    scrape_interval: 2s
-    static_configs:
-      - targets: ['172.10.0.140:8089']
-        labels:
-          group: 'production'
-
-  - job_name: 'jenkins'
-    metrics_path: '/prometheus'
+  - job_name: "jenkins"
+    metrics_path: /prometheus
     static_configs:
       - targets: ['172.10.0.140:8080']
+
+  - job_name: 'SonarQube'
+    metrics_path: /api/monitoring/metrics
+    static_configs:
+      - targets: ['172.10.0.140:9000']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: sonarqube_instance  # Set a meaningful instance label
+    basic_auth:
+      username: admin
+      password: fares
+
+  - job_name: 'Nexus'
+    metrics_path: /service/metrics/prometheus
+    static_configs:
+      - targets: ['172.10.0.140:8081']  # Replace with your Nexus server's address
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: nexus_instance  # Set a meaningful instance label
+    basic_auth:
+      username: admin
+      password: fares
+
+  - job_name: 'spring-actuator'
+    metrics_path: '//actuator/prometheus'
+    scrape_interval: 5s  # Adjust the scrape interval as needed
+    static_configs:
+      - targets: ['172.10.0.140:8089']  # Replace with your Spring Boot app's address
+        labels:
+          group: 'production'  # You can specify a label for your Spring Boot app
