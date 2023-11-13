@@ -6,8 +6,12 @@ WORKDIR /app
 COPY package.json ./
 COPY package-lock.json ./
 
-# Use --force to force npm install without a package-lock or shrinkwrap
-RUN npm install --force
+# Clear npm cache
+RUN npm cache clean --force
+
+# Separate npm install steps
+RUN npm install --no-package-lock
+RUN npm install
 
 COPY . .
 
