@@ -11,3 +11,8 @@ scrape_configs:
       - targets: ['172.10.0.140:8089']
         labels:
           group: 'production'
+
+  - job_name: 'jenkins'
+    metrics_path: '/prometheus'
+    static_configs:
+      - targets: ['192.168.33.22:8080']
