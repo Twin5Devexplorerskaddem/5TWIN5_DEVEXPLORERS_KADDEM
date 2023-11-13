@@ -5,12 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.kaddem.entities.Etudiant;
 import tn.esprit.spring.kaddem.services.IEtudiantService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
 @RequestMapping("/etudiant")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+	
 public class EtudiantRestController {
 	@Autowired
 	IEtudiantService etudiantService;
@@ -27,7 +30,8 @@ public class EtudiantRestController {
 	}
 
 	// http://localhost:8089/Kaddem/etudiant/add-etudiant
-	@PostMapping("/add-etudiant")
+	@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+        @PostMapping("/add-etudiant")
 	public Etudiant addEtudiant(@RequestBody Etudiant e) {
 		Etudiant etudiant = etudiantService.addEtudiant(e);
 		return etudiant;
