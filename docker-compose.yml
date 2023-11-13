@@ -36,7 +36,7 @@ services:
   angular-app:
     build:
       context: ./Ang
-      dockerfile: Dockerfile
+      dockerfile: Dockefile
     restart: on-failure
     ports:
       - "80:80"  
