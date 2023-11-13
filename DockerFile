@@ -1,5 +1,5 @@
 FROM openjdk:8
 WORKDIR /app
-COPY target/kaddem-1.0.0.jar kaddem-1.0.0.jar
-EXPOSE 8080
-CMD ["java", "-jar","kaddem-1.0.0.jar"]
+COPY target/kaddem-1.0.0.jar app/5twin-G5-Kaddem.jar
+EXPOSE 8089
+CMD ["java", "-jar", "app/5twin-G5-Kaddem.jar"]
