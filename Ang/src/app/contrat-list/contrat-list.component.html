@@ -1,0 +1,39 @@
+<!-- contrat-list.component.html -->
+
+<div class="container" style="max-width: 800px; margin: auto;">
+
+    <header style="background-color: #3498db; padding: 10px; color: #fff; text-align: center;">
+      <h1>List of Contracts</h1>
+    </header>
+  
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+      <thead>
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #3498db; color: #fff;">Contract ID</th>
+          <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #3498db; color: #fff;">Start Date</th>
+          <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #3498db; color: #fff;">End Date</th>
+          <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #3498db; color: #fff;">Speciality</th>
+          <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #3498db; color: #fff;">Is Archived</th>
+          <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #3498db; color: #fff;">Amount</th>
+          <!-- Add other column headers as needed -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contrat of contrats" style="border: 1px solid #ddd; padding: 8px; text-align: left;">
+          <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">{{ contrat.idContrat }}</td>
+          <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">{{ contrat.dateDebutContrat | date:'shortDate' }}</td>
+          <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">{{ contrat.dateFinContrat | date:'shortDate' }}</td>
+          <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">{{ contrat.specialite }}</td>
+          <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">{{ contrat.archive ? 'Yes' : 'No' }}</td>
+          <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">{{ contrat.montantContrat }}</td>
+          <!-- Add other columns based on your API response structure -->
+        </tr>
+      </tbody>
+    </table>
+  
+    <footer style="margin-top: 20px; background-color: #3498db; padding: 10px; color: #fff; text-align: center;">
+      <p>© 2023 DEVOPS </p>
+    </footer>
+  
+  </div>
+  
