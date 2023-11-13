@@ -36,7 +36,7 @@ services:
 
   angularapp:
     build:
-      context: .
+      context: ./Angular
       dockerfile: DockerFile
     restart: on-failure
     ports:
