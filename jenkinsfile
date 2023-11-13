@@ -45,6 +45,17 @@ agent any
                 sh 'mvn deploy'
             }
         }
+         stage('Push Docker Image to Docker Hub') {
+                    steps {
+                        script {
+                            
+                            sh 'docker tag kaddemoudiamine_app amineoudi/kaddemoudiamine_app:latest'
+                            sh 'docker login -u amineoudi -p admin'
+                            sh 'docker push amineoudi/kaddemoudiamine_app:latest'
+                        }
+                    }
+                }
+
          
      stage('Docker Compose Up') {
             steps {
