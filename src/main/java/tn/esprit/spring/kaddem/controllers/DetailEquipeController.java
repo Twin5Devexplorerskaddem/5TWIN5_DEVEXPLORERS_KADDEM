@@ -35,7 +35,7 @@ public class DetailEquipeController {
         DetailEquipe equipe = equipeService.addEquipe(e);
         return equipe;
     }
-
+//ufhgvjygyug
     // http://localhost:8089/Kaddem/Detailequipe/remove-equipe/1
     @DeleteMapping("/remove-detailequipe/{idDetailEquipe}")
     public void removeEquipe(@PathVariable("idDetailEquipe") Integer equipeId) {
