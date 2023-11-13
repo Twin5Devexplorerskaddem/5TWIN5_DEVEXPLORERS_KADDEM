@@ -51,7 +51,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t omarcharfi-5twin5-kaddem_app .'
+                    sh 'docker build -t omarcharfi-5twin5-kaddem_app -f DockerFile .'
                 }
             }
         }
