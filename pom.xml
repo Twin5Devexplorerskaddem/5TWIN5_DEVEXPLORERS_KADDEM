@@ -11,7 +11,7 @@
 
     <groupId>tn.esprit.spring</groupId>
     <artifactId>kaddem</artifactId>
-    <version>0.0.1</version>
+    <version>0.1.1</version>
     <name>kaddem</name>
     <description>kaddem</description>
 
@@ -70,14 +70,14 @@
 
     </dependencies>
 
-<!--     <distributionManagement>
+    <distributionManagement>
         <repository>
             <id>deploymentRepo</id>
             <name>Nexus Repository</name>
             <url>http://172.10.0.140:8081/repository/maven-releases/</url>
 
         </repository>
-    </distributionManagement> -->
+    </distributionManagement>
 
 
     <build>
