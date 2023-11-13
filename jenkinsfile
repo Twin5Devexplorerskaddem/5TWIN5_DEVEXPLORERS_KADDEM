@@ -1,6 +1,16 @@
 pipeline {
 agent any
     stages {
+
+        stage('Prepare Workspace') {
+                    steps {
+                        script {
+                            // Run the command to change ownership of the workspace
+                            sh 'sudo chown -R jenkins:jenkins /var/lib/jenkins/workspace'
+                        }
+                    }
+                }
+
         stage('Checkout') {
             steps {
                 script {
