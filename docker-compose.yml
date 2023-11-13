@@ -40,7 +40,7 @@ services:
       dockerfile: DockerFile
     restart: on-failure
     ports:
-      - "4100:4100"
+      - "4200:4200"
     
 volumes:
   db:
