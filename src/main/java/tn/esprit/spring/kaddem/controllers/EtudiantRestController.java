@@ -12,7 +12,8 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/etudiant")
-@CrossOrigin(origins = "*", allowedHeaders = "*")	
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+	
 public class EtudiantRestController {
 	@Autowired
 	IEtudiantService etudiantService;
@@ -29,7 +30,8 @@ public class EtudiantRestController {
 	}
 
 	// http://localhost:8089/Kaddem/etudiant/add-etudiant
-	@PostMapping("/add-etudiant")
+	@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+        @PostMapping("/add-etudiant")
 	public Etudiant addEtudiant(@RequestBody Etudiant e) {
 		Etudiant etudiant = etudiantService.addEtudiant(e);
 		return etudiant;
