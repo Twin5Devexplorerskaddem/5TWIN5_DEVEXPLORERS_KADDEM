@@ -60,9 +60,9 @@ pipeline {
             steps {
                 script {
                     
-                    sh 'docker tag omarcharfi-5twin5-kaddem_app omarcharfi/omarcharfi-5twin5-kaddem_app:latest'
+                    sh 'docker tag omarcharfi-5twin5-kaddem_app omarcharfi/omarcharfi-5twin5-kaddem_app1:latest'
                     sh 'docker login -u omarcharfi -p Omar11117532!'
-                    sh 'docker push omarcharfi/omarcharfi-5twin5-kaddem_app:latest'
+                    sh 'docker push omarcharfi/omarcharfi-5twin5-kaddem_app1:latest'
                 }
             }
         }
