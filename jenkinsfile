@@ -1,5 +1,11 @@
 pipeline {
 agent any
+  environment {
+        // Définissez les informations de connexion SSH ici
+        SSH_HOST = '172.10.0.140'
+        SSH_USER = 'vagrant'
+        SSH_PASSWORD = 'vagrant'
+    }
     stages {
     
 
