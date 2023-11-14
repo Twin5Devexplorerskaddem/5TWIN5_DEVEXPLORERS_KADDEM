@@ -86,11 +86,11 @@ agent any
             steps {
                 script {
                     def remote = [
-                        name: 'K8S master',
-                       SSH_HOST = '172.10.0.140'
-                        SSH_USER = 'vagrant'
-                        SSH_PASSWORD = 'vagrant'
-                        allowAnyHosts: true
+                    remote.name = 'K8S master'
+                    remote.host = '172.10.0.140'
+                    remote.user = 'vagrant'
+                    remote.password = 'vagrant'
+                    remote.allowAnyHosts = true
                     ]
 
                     sshCommand remote: remote, command: "kubectl apply -f k8s-spring-boot-deployment.yml"
