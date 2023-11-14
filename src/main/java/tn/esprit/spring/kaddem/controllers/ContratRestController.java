@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/contrat")
-@CrossOrigin(origins= "*")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 public class ContratRestController {
 	IContratService contratService;
 	// http://localhost:8089/Kaddem/contrat/retrieve-all-contrats
