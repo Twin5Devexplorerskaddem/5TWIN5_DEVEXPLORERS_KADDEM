@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kaddem-springboot
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kaddem-springboot
+  template:
+    metadata:
+      labels:
+        app: kaddem-springboot
+    spec:
+      containers:
+        - name: kaddem-springboot
+          image: amineoudi/kaddemoudiamine_app:latest
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "512m"
+            limits:
+              memory: "256Mi"
+              cpu: "1"
+          ports:
+            - containerPort: 8082
+          readinessProbe:
+            httpGet:
+              path: /Detailequipe/retrieve-all-detailequipes
+              port: 8082
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /Detailequipe/retrieve-all-detailequipes
+              port: 8082
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          startupProbe:
+            httpGet:
+              path: /Detailequipe/retrieve-all-detailequipes
+              port: 8082
+            failureThreshold: 30
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kaddem-springboot
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 8082
+  selector:
+    app: kaddem-springboot
