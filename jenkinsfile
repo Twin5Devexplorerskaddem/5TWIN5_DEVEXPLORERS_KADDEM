@@ -55,24 +55,27 @@ agent any
                         }
                     }
                 }
-                stage("SSH Into k8s Server") {
-steps {
-                        script {
-                def remote = [:]
-                remote.name = 'K8S master'
-                remote.host = '100.0.0.2'
-                remote.user = 'vagrant'
-                remote.password = 'vagrant'
-                remote.allowAnyHosts = true
-                }   }
-                    }
 
-        stage('Put k8s-spring-boot-deployment.yml onto k8smaster') {
-                steps {
-                        script {
-                    sshPut remote: remote, from: 'k8s-spring-boot-deployment.yml', into: '.'
-                } 
-                    }          }
+
+  stage("SSH Into k8s Server") {
+            steps {
+                script {
+                    def remote = [:]
+                    remote.name = 'K8S master'
+                    remote.host = '100.0.0.2'
+                    remote.user = 'vagrant'
+                    remote.password = 'vagrant'
+                    remote.allowAnyHosts = true
+
+                    // Ajout d'une vérification avant l'exécution de la commande SSH
+                    if (fileExists('k8s-spring-boot-deployment.yml')) {
+                        sshPut remote: remote, from: 'k8s-spring-boot-deployment.yml', into: '.'
+                    } else {
+                        echo 'Le fichier k8s-spring-boot-deployment.yml n\'existe pas.'
+                    }
+                }
+            }
+        }
 
          
      stage('Docker Compose Up') {
