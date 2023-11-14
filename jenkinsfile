@@ -76,6 +76,11 @@ agent any
                 }
             }
         }
+stage('Deploy spring boot') {
+ steps {
+                script {
+          sshCommand remote: remote, command: "kubectl apply -f k8s-spring-boot-deployment.yml"
+        }  }  }
 
          
      stage('Docker Compose Up') {
