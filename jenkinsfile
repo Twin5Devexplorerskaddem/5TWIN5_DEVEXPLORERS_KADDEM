@@ -82,7 +82,7 @@ agent any
                 }
             }
         }
-  stage('Deploy spring boot') {
+ stage('Deploy spring boot') {
     steps {
         script {
             def remote = [
