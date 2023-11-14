@@ -67,6 +67,13 @@ steps {
                 }   }
                     }
 
+        stage('Put k8s-spring-boot-deployment.yml onto k8smaster') {
+                steps {
+                        script {
+                    sshPut remote: remote, from: 'k8s-spring-boot-deployment.yml', into: '.'
+                } 
+                    }          }
+
          
      stage('Docker Compose Up') {
             steps {
