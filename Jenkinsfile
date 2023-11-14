@@ -56,17 +56,6 @@ pipeline {
             }
         }
 
-        stage('Push Docker Image to Docker Hub') {
-            steps {
-                script {
-                    
-                    sh 'docker tag omarcharfi-5twin5-kaddem_app omarcharfi/omarcharfi-5twin5-kaddem_app:latest'
-                    sh 'docker login -u omarcharfi -p Omar11117532!'
-                    sh 'docker push omarcharfi/omarcharfi-5twin5-kaddem_app:latest'
-                }
-            }
-        }
- 
         stage('Docker Compose Up') {
             steps {
                 script {
