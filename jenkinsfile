@@ -96,7 +96,7 @@ agent any
                     sshCommand remote: remote, command: "kubectl apply -f k8s-spring-boot-deployment.yml"
                 }
             }
-
+ }
          
      stage('Docker Compose Up') {
             steps {
