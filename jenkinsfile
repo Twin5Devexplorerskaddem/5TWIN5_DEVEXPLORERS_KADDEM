@@ -82,11 +82,20 @@ agent any
                 }
             }
         }
-stage('Deploy spring boot') {
- steps {
+  stage('Deploy spring boot') {
+            steps {
                 script {
-          sshCommand remote: remote, command: "kubectl apply -f k8s-spring-boot-deployment.yml"
-        }  }  }
+                    def remote = [
+                        name: 'K8S master',
+                       SSH_HOST = '172.10.0.140'
+                        SSH_USER = 'vagrant'
+                        SSH_PASSWORD = 'vagrant'
+                        allowAnyHosts: true
+                    ]
+
+                    sshCommand remote: remote, command: "kubectl apply -f k8s-spring-boot-deployment.yml"
+                }
+            }
 
          
      stage('Docker Compose Up') {
